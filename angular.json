@@ -96,6 +96,9 @@
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
+        },
+        "stylelint": {
+          "builder": "@bmatei/stylelint-builder-angular:lint"
         }
       }
     }
