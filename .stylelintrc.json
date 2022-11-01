@@ -2,7 +2,9 @@
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-standard-scss",
-    "stylelint-prettier/recommended"
+    "stylelint-prettier/recommended",
+    "stylelint-scss",
+    "stylelint-config-prettier"
   ],
   "ignoreFiles": [
     "node_modules/**/*.css",

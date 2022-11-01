@@ -58,7 +58,6 @@
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.3.0",
-    "stylelint-webpack-plugin": "^3.3.0",
     "typescript": "~4.7.2"
   }
 }
