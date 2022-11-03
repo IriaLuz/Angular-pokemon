@@ -3,6 +3,6 @@
 
 npx --no -- commitlint --edit ${1}
 ng lint
-ng test
+npm run tsc
 npm run stylelint
 ng build 
