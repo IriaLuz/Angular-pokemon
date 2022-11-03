@@ -1,21 +1,20 @@
+@use "../styles/theme/colors";
+@use "../styles/theme/spacing";
+
 .bulbasaurImage {
   width: 100%;
   height: auto;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .cardWrapper {
-  background-color: #ffb300;
-  padding: 0.5rem;
+  background-color: colors.$card-background;
+  padding: spacing.$space-sm;
   text-align: center;
-  width: 234px;
-  height: 367px;
+  width: 15rem;
+  height: 23rem;
 }
 
 td,
 tr {
-  padding: 0.75rem;
+  padding: spacing.$space-md;
 }
