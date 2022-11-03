@@ -1,0 +1,24 @@
+@use "../../styles/theme/colors";
+@use "../../styles/theme/spacing";
+
+.bulbasaurImage {
+  width: 100%;
+  height: auto;
+}
+
+.cardWrapper {
+  background-color: colors.$card-background;
+  padding: spacing.$space-sm;
+  text-align: center;
+  width: 15rem;
+  height: 23rem;
+}
+
+td {
+  padding-bottom: spacing.$space-sm;
+  padding-right: spacing.$space-xl;
+}
+
+table {
+  padding-left: spacing.$space-md;
+}
