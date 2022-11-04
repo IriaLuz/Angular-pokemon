@@ -1,14 +1,18 @@
 <div class="cardWrapper">
-  <h3>{{ title }}</h3>
-  <img class="bulbasaurImage" src="{{ image.url }}" alt="{{ image.alt }}" />
+  <h3>{{ pokemons.name }}</h3>
+  <img
+    class="bulbasaurImage"
+    src="{{ pokemons.sprites.other.home.front_default }}"
+    alt="{{ pokemons.name }}"
+  />
   <table class="pokemonDescription" height="20%">
     <tr>
       <td><b>Height</b></td>
-      <td>{{ dimentions.height }}</td>
+      <td>{{ pokemons.height }}</td>
     </tr>
     <tr>
       <td><b>Weigh</b></td>
-      <td>{{ dimentions.weight }}</td>
+      <td>{{ pokemons.weight }}</td>
     </tr>
   </table>
 </div>

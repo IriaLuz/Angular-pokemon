@@ -12,10 +12,15 @@
   text-align: center;
   width: 15rem;
   height: 23rem;
+  padding-bottom: spacing.$space-sm;
+}
+
+td {
+  padding-right: spacing.$space-xl;
 }
 
 .cardWrapper table > tr > td {
-  padding-bottom: 20%;
+  padding-bottom: spacing.$space-lg;
 }
 
 .cardWrapper table > tr > td:first-child {
