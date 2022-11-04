@@ -14,9 +14,12 @@
   height: 23rem;
 }
 
-td {
-  padding-bottom: spacing.$space-sm;
-  padding-right: spacing.$space-xl;
+.cardWrapper table > tr > td {
+  padding-bottom: 20%;
+}
+
+.cardWrapper table > tr > td:first-child {
+  font-weight: bolder;
 }
 
 table {
