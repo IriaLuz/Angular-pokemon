@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { CardType } from './card/card';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class PokemonDataService {
   constructor(private http: HttpClient) {}
-  getData() {
-    return this.http.get('https://pokeapi.co/api/v2/pokemon/1');
+  getData(): Observable<CardType> {
+    return this.http.get<CardType>('https://pokeapi.co/api/v2/pokemon/1');
   }
 }
