@@ -1,15 +1,14 @@
-import { PokemonDataService } from '../pokemonData.service';
+import { PokemonDataService } from '../services/pokemonData.service';
 import { Component, OnInit } from '@angular/core';
-import { CardType } from './card';
+import { PokemonType } from './card';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  // providers: [CardService],
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  pokemon!: CardType;
+  pokemon: PokemonType = { name: '', weight: 0, height: 0, src: '' };
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {

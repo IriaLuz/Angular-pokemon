@@ -18,6 +18,13 @@ export interface CardType {
   types: Type[];
   weight: number;
 }
+
+export interface PokemonType {
+  height: number;
+  name: string;
+  weight: number;
+  src: string;
+}
 export interface Ability {
   ability: Ability2;
   is_hidden: boolean;
