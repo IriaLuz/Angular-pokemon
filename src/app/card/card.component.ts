@@ -9,13 +9,16 @@ import { CardType } from './card';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  pokemons!: CardType;
+  pokemon!: CardType;
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
+    this.onGetPokemon();
+  }
+  onGetPokemon(): void {
     this.pokemonService
-      .getData()
-      .subscribe((pokemonsData) => (this.pokemons = pokemonsData));
+      .getPokemon()
+      .subscribe((pokemonData) => (this.pokemon = pokemonData));
   }
 
   // title = 'Bulbasaur';
