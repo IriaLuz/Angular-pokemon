@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Observable } from 'rxjs';
 
-function transformToPokemonType(pokemonData: CardType): PokemonType {
+export function transformToPokemonType(pokemonData: CardType): PokemonType {
   return {
     name: pokemonData.name,
     weight: pokemonData.weight,
