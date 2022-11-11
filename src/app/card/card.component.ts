@@ -1,6 +1,7 @@
 import { PokemonDataService } from '../services/pokemonData.service';
 import { Component, OnInit } from '@angular/core';
 import { PokemonType } from './card';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card',
@@ -14,24 +15,11 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
     this.onGetPokemon();
   }
+
   onGetPokemon(): void {
     this.pokemonService
       .getPokemon()
+      .pipe(tap((data) => console.log('data from pokemon', data)))
       .subscribe((pokemonData) => (this.pokemon = pokemonData));
   }
-
-  // title = 'Bulbasaur';
-  // image = { url: '/assets/bulbasaur.png', alt: 'bulbasaurImage' };
-  // dimentions = { height: 7, weight: 69 };
-  // cards: any;
-
-  // constructor(private cardService: CardService) {}
-
-  // ngOnInit(): void {
-  //   this.getCard();
-  // }
-
-  // getCard(): void {
-  //   this.cardService.getCard().subscribe((cards) => (this.cards = cards));
-  // }
 }

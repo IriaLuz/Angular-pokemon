@@ -1,46 +1,98 @@
 import { pokemonMockTransformed } from './../services/mockData';
 import { PokemonDataService } from './../services/pokemonData.service';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CardComponent } from './card.component';
-import { Observable, of } from 'rxjs';
-import { PokemonType } from './card';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CardComponent', () => {
-  let pokemon = pokemonMockTransformed;
+  let spy: jasmine.Spy;
+  let service: PokemonDataService;
   let component: CardComponent;
-  let mockPokemonService: any;
   let fixture: ComponentFixture<CardComponent>;
-  let PokemonService: PokemonDataService;
-  class Mockpokemon {
-    getPokemon(): Observable<PokemonType> {
-      //removed the word Observable.of()
-      return of(pokemon);
-    }
-  }
 
-  beforeEach(async () => {
-    // mockPokemonService = jasmine.createSpyObj(['getPokemon']);
-    mockPokemonService = new Mockpokemon();
-
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [CardComponent],
-      providers: [{ provide: PokemonDataService, useValue: new Mockpokemon() }],
+      providers: [PokemonDataService],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
+    service = TestBed.inject(PokemonDataService);
+  }));
 
-    fixture = TestBed.createComponent(CardComponent);
-    component = fixture.componentInstance;
-    PokemonService = TestBed.inject(PokemonDataService);
-    fixture.detectChanges();
+  afterEach(() => {
+    spy = null as any;
   });
 
   it('should create', () => {
+    fixture = TestBed.createComponent(CardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should set pokemon from the servive directly', () => {
-    // mockPokemonService.getPokemon.and.returnValue(of([pokemon]));
+    spy = spyOn(service, 'getPokemon').and.returnValue(
+      of(pokemonMockTransformed)
+    );
+    fixture = TestBed.createComponent(CardComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component.pokemon.height).toBe(7);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
+
+// //another way to write the same test
+// import { pokemonMockTransformed } from './../services/mockData';
+// import { PokemonDataService } from './../services/pokemonData.service';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+// import { CardComponent } from './card.component';
+// import { of } from 'rxjs';
+
+// describe('CardComponent', () => {
+//   // let pokemon = pokemonMockTransformed;
+//   let component: CardComponent;
+//   //it is ok to add here any as time isnot a problem
+//   let mockPokemonService: any;
+//   let fixture: ComponentFixture<CardComponent>;
+//   let PokemonService: PokemonDataService;
+//   // class Mockpokemon {
+//   //   getPokemon(): Observable<PokemonType> {
+//   //     //removed the word Observable.of() is deprecated
+//   //     return of(pokemonMockTransformed);
+//   //   }
+//   // }
+//   //instead to have the class mockpokemon do this:
+//   const stubPokemonService = {
+//     getPokemon: () => of(pokemonMockTransformed),
+//   };
+
+//   beforeEach(async () => {
+//     // before stubPokemonService I have this:
+//     //mockPokemonService = new Mockpokemon();
+
+//     await TestBed.configureTestingModule({
+//       declarations: [CardComponent],
+//       providers: [
+//         { provide: PokemonDataService, useValue: stubPokemonService }, // before I called here the instance new class Mockpokemon
+//       ],
+//     }).compileComponents();
+
+//     fixture = TestBed.createComponent(CardComponent);
+//     component = fixture.componentInstance;
+//     PokemonService = TestBed.inject(PokemonDataService);
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+
+//   it('should set pokemon from the servive directly', () => {
+//     fixture.detectChanges();
+//     expect(component.pokemon.height).toBe(7);
+//   });
+// });
