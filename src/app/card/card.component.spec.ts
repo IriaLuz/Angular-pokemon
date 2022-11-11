@@ -1,4 +1,7 @@
-import { pokemonMockTransformed } from './../services/mockData';
+import {
+  pokemonMockTransformed,
+  pokemonMockTransformedSecondReq,
+} from './../services/mockData';
 import { PokemonDataService } from './../services/pokemonData.service';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -6,7 +9,7 @@ import { CardComponent } from './card.component';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('CardComponent', () => {
+fdescribe('CardComponent', () => {
   let spy: jasmine.Spy;
   let service: PokemonDataService;
   let component: CardComponent;
@@ -18,17 +21,13 @@ describe('CardComponent', () => {
       providers: [PokemonDataService],
       imports: [HttpClientTestingModule],
     }).compileComponents();
-    service = TestBed.inject(PokemonDataService);
-  }));
-
-  afterEach(() => {
-    spy = null as any;
-  });
-
-  it('should create', () => {
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
+    service = TestBed.inject(PokemonDataService);
     fixture.detectChanges();
+  }));
+
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
@@ -36,10 +35,18 @@ describe('CardComponent', () => {
     spy = spyOn(service, 'getPokemon').and.returnValue(
       of(pokemonMockTransformed)
     );
-    fixture = TestBed.createComponent(CardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.ngOnInit();
     expect(component.pokemon.height).toBe(7);
+    expect(spy).toHaveBeenCalledTimes(1);
+    // expect(spy).toHaveBeenCalledWith(1); // 1 is the ID of the pokemon
+  });
+
+  it('should set pokemon from the servive directly', () => {
+    spy = spyOn(service, 'getPokemon').and.returnValue(
+      of(pokemonMockTransformedSecondReq)
+    );
+    component.ngOnInit();
+    expect(component.pokemon.height).toBe(9);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
