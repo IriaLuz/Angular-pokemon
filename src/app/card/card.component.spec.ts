@@ -9,7 +9,7 @@ import { CardComponent } from './card.component';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-fdescribe('CardComponent', () => {
+describe('CardComponent', () => {
   let spy: jasmine.Spy;
   let service: PokemonDataService;
   let component: CardComponent;
@@ -73,6 +73,7 @@ fdescribe('CardComponent', () => {
 //   //   }
 //   // }
 //   //instead to have the class mockpokemon do this:
+//   //Why in here I did not use the observable
 //   const stubPokemonService = {
 //     getPokemon: () => of(pokemonMockTransformed),
 //   };
@@ -84,7 +85,7 @@ fdescribe('CardComponent', () => {
 //     await TestBed.configureTestingModule({
 //       declarations: [CardComponent],
 //       providers: [
-//         { provide: PokemonDataService, useValue: stubPokemonService }, // before I called here the instance new class Mockpokemon
+//         { provide: PokemonDataService, useValue: stubPokemonService }, // before I called here the instance new class Mockpokemon()
 //       ],
 //     }).compileComponents();
 
