@@ -38,7 +38,6 @@ describe('CardComponent', () => {
     component.ngOnInit();
     expect(component.pokemon.height).toBe(7);
     expect(spy).toHaveBeenCalledTimes(1);
-    // expect(spy).toHaveBeenCalledWith(1); // 1 is the ID of the pokemon
   });
 
   it('should set pokemon from the servive directly', () => {

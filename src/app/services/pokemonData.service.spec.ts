@@ -39,6 +39,5 @@ describe('PokemonDataService', () => {
     expect(req.request.method).toEqual('GET'); // 3.
     //Ensures the correct data was returned using Subscribe callback.
     req.flush(pokemonMockResponse); // 4.
-    // httpMock.verify();
   });
 });
