@@ -13,12 +13,12 @@ export class CardComponent implements OnInit {
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
-    this.onGetPokemon();
+    this.onGetPokemonData();
   }
 
-  onGetPokemon(): void {
+  onGetPokemonData(): void {
     this.pokemonService
-      .getPokemon()
+      .getPokemonData('bulbasaur')
       .pipe(tap((data) => console.log('data from pokemon', data)))
       .subscribe((pokemonData) => (this.pokemon = pokemonData));
   }

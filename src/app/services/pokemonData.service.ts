@@ -22,9 +22,13 @@ export class PokemonDataService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
-  getPokemon(): Observable<PokemonType> {
+  getPokemonDatas() {
+    return this.http.get(`${this.apiUrl}/pokemon?limit=12`);
+  }
+
+  getPokemonData(name: string): Observable<PokemonType> {
     const data = this.http
-      .get<CardType>(`${this.apiUrl}/pokemon/1`)
+      .get<CardType>(`${this.apiUrl}/pokemon/${name}`)
       .pipe(map(transformToPokemonType));
     return data;
   }
