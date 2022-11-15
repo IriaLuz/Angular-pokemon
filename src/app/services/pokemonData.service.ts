@@ -22,7 +22,7 @@ export class PokemonDataService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
-  getPokemonDatas() {
+  getAllPokemons() {
     return this.http.get(`${this.apiUrl}/pokemon?limit=12`);
   }
 
