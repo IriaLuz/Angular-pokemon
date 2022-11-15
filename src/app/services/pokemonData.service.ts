@@ -11,7 +11,7 @@ export function transformToPokemonType(pokemonData: CardType): PokemonType {
     name: pokemonData.name,
     weight: pokemonData.weight,
     height: pokemonData.height,
-    src: pokemonData.sprites.other.dream_world.front_default,
+    src: pokemonData.sprites.other['official-artwork'].front_default,
   };
 }
 

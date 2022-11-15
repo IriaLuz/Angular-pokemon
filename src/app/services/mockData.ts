@@ -4,7 +4,7 @@ export const pokemonMockTransformed: PokemonType = {
   name: 'bulbasaur',
   weight: 69,
   height: 7,
-  src: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
+  src: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
 };
 
 export const pokemonMockTransformedSecondReq: PokemonType = {
