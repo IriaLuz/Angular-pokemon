@@ -1,3 +1,14 @@
+export interface AllPokemonsType {
+  count: number;
+  next: string;
+  previous: null;
+  results: Results[];
+}
+
+export interface Results {
+  name: string;
+  url: string;
+}
 export interface CardType {
   abilities: Ability[];
   base_experience: number;
