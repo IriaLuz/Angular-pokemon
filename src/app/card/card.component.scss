@@ -6,27 +6,27 @@
   height: auto;
 }
 
+.cardWrapper table {
+  padding-left: spacing.$space-md;
+
+  td {
+    padding-right: spacing.$space-xl;
+  }
+
+  td:first-child {
+    font-weight: 800;
+  }
+
+  tr,
+  td {
+    padding-bottom: spacing.$space-lg;
+  }
+}
+
 .cardWrapper {
   background-color: colors.$card-background;
   padding: spacing.$space-sm;
   text-align: center;
   width: 15rem;
   height: 23rem;
-  padding-bottom: spacing.$space-sm;
-}
-
-td {
-  padding-right: spacing.$space-xl;
-}
-
-.cardWrapper table > tr > td {
-  padding-bottom: spacing.$space-lg;
-}
-
-.cardWrapper table > tr > td:first-child {
-  font-weight: bolder;
-}
-
-table {
-  padding-left: spacing.$space-md;
 }
