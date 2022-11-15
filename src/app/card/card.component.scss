@@ -1,0 +1,32 @@
+@use "../../styles/theme/colors";
+@use "../../styles/theme/spacing";
+
+.bulbasaurImage {
+  width: 100%;
+  height: auto;
+}
+
+.pokemonDescription {
+  background-color: colors.$card-background;
+  padding: spacing.$space-sm;
+  text-align: center;
+  width: 15rem;
+  height: 23rem;
+
+  table {
+    padding-left: spacing.$space-md;
+
+    td {
+      padding-right: spacing.$space-xl;
+    }
+
+    tr,
+    td {
+      padding-bottom: spacing.$space-lg;
+    }
+
+    td:first-child {
+      font-weight: 800;
+    }
+  }
+}

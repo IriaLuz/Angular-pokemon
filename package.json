@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "stylelint-check": "stylelint-config-prettier-check",
-    "stylelint": "ng run pokemon-app:stylelint"
+    "stylelint": "ng run pokemon-app:stylelint",
+    "test:ci": "ng test --watch=false --browsers ChromeHeadless",
+    "tsc": "tsc"
   },
   "private": true,
   "dependencies": {
