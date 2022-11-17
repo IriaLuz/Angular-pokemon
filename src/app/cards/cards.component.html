@@ -3,10 +3,12 @@
   *ngFor="
     let name of pokemonNames
       | paginate
-        : { itemsPerPage: 10, currentPage: page, totalItems: totalPokemons }
+        : { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }
   "
 >
   <app-card [pokemonName]="name"></app-card>
 </div>
 
-<pagination-controls></pagination-controls>
+<pagination-controls
+  (pageChange)="page = $event; pokemonNames = []; getPokemons()"
+></pagination-controls>

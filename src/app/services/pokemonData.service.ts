@@ -22,8 +22,10 @@ export class PokemonDataService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
-  getAllPokemons() {
-    return this.http.get(`${this.apiUrl}/pokemon?limit=12`);
+  getAllPokemons(limit: number, page: number) {
+    return this.http.get(
+      `${this.apiUrl}/pokemon?limit=${limit}&offset=${(page - 1) * limit}`
+    );
   }
 
   getPokemonData(name: string): Observable<PokemonType> {

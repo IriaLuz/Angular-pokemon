@@ -13,13 +13,18 @@ export class CardsComponent implements OnInit {
   constructor(private PokemonDataService: PokemonDataService) {}
 
   ngOnInit(): void {
-    this.PokemonDataService.getAllPokemons().subscribe((response: any) => {
-      this.totalPokemons = response.count;
+    this.getPokemons();
+  }
+  getPokemons(): void {
+    this.PokemonDataService.getAllPokemons(12, this.page + 0).subscribe(
+      (response: any) => {
+        this.totalPokemons = response.count;
 
-      response.results.forEach((result: any) => {
-        this.pokemonNames.push(result.name);
-        console.log(this.pokemonNames);
-      });
-    });
+        response.results.forEach((result: any) => {
+          this.pokemonNames.push(result.name);
+          console.log(this.pokemonNames);
+        });
+      }
+    );
   }
 }
