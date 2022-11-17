@@ -25,7 +25,7 @@
       padding: 0.5rem 1rem;
 
       &:hover {
-        background-color: rgb(210, 114, 210);
+        background-color: rgb(210 114 210);
       }
 
       &.disabled {
@@ -37,6 +37,7 @@
 
       a {
         color: white;
+
         &:hover {
           background: none;
         }
