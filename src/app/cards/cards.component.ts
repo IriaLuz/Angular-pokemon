@@ -7,16 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent implements OnInit {
+  pokemonNames: any = [];
+  page = 1;
+  totalPokemons: any;
   constructor(private PokemonDataService: PokemonDataService) {}
 
-  pokemonNames: any = [];
-
   ngOnInit(): void {
-    this.PokemonDataService.getAllPokemons().subscribe((response: any) =>
+    this.PokemonDataService.getAllPokemons().subscribe((response: any) => {
+      this.totalPokemons = response.count;
+
       response.results.forEach((result: any) => {
         this.pokemonNames.push(result.name);
-      })
-    );
-    console.log(this.pokemonNames);
+        console.log(this.pokemonNames);
+      });
+    });
   }
 }

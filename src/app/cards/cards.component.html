@@ -1,3 +1,12 @@
-<div class="cards-container" *ngFor="let name of pokemonNames">
+<div
+  class="cards-container"
+  *ngFor="
+    let name of pokemonNames
+      | paginate
+        : { itemsPerPage: 10, currentPage: page, totalItems: totalPokemons }
+  "
+>
   <app-card [pokemonName]="name"></app-card>
 </div>
+
+<pagination-controls></pagination-controls>
