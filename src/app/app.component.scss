@@ -101,21 +101,9 @@ svg#rocket-smoke {
   z-index: -10;
 }
 
-a {
-  &:visited,
-  &:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  footer a {
-    display: flex;
-    align-items: center;
-  }
-}
-
-a:hover {
-  color: #125699;
+footer > a {
+  display: flex;
+  align-items: center;
 }
 
 .terminal {
