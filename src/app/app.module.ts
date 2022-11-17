@@ -7,8 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { CardsComponent } from './cards/cards.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 @NgModule({
-  declarations: [AppComponent, CardComponent, CardsComponent],
+  declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [PokemonDataService],
   bootstrap: [AppComponent],

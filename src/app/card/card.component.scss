@@ -1,5 +1,5 @@
-@use "../../styles/theme/colors";
-@use "../../styles/theme/spacing";
+@use "../../styles/colors";
+@use "../../styles/spacing";
 
 .bulbasaurImage {
   width: 100%;
@@ -12,6 +12,7 @@
   text-align: center;
   width: 15rem;
   height: 23rem;
+  border: 1px solid colors.$card-border;
 
   table {
     padding-left: spacing.$space-md;
