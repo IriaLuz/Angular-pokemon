@@ -22,12 +22,12 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('pokemon-app');
   });
 
-  it('should render title', () => {
+  it('should render a link text', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'pokemon-app app is running!'
+    expect(compiled.querySelector('a')?.textContent).toContain(
+      'Pokemon app repo, Iria Luz'
     );
   });
 });

@@ -24,7 +24,6 @@ describe('CardComponent', () => {
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
     service = TestBed.inject(PokemonDataService);
-    fixture.detectChanges();
   }));
 
   it('should create', () => {
@@ -35,7 +34,7 @@ describe('CardComponent', () => {
     spy = spyOn(service, 'getPokemonData').and.returnValue(
       of(pokemonMockTransformed)
     );
-    component.ngOnInit();
+    fixture.detectChanges();
     expect(component.pokemon.height).toBe(7);
     expect(spy).toHaveBeenCalledTimes(1);
   });

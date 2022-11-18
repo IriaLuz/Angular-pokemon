@@ -8,7 +8,7 @@
 
   li,
   button {
-    color: colors.$pagination-text;
+    color: colors.$page-number-text;
     display: flex;
     justify-content: space-between;
     padding: spacing.$space-xs spacing.$space-sm;
@@ -50,7 +50,7 @@
   margin: spacing.$space-normal spacing.$space-normal;
   padding: spacing.$space-sm spacing.$space-normal !important;
   background: colors.$page-number-active-background !important;
-  color: colors.$page-number-active !important;
+  color: colors.$page-number-text-active !important;
   text-align: center;
   cursor: default;
 }
