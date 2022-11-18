@@ -15,8 +15,9 @@ export class CardsComponent implements OnInit {
   ngOnInit(): void {
     this.getPokemons();
   }
+
   getPokemons(): void {
-    this.PokemonDataService.getAllPokemons(12, this.page + 0).subscribe(
+    this.PokemonDataService.getAllPokemons(12, this.page).subscribe(
       (response: any) => {
         this.totalPokemons = response.count;
 

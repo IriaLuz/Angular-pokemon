@@ -4,39 +4,39 @@
 @use "./spacing";
 
 .ngx-pagination {
+  cursor: pointer;
+
   li,
   button {
-    color: #0a0a0a;
+    color: colors.$pagination-text;
     display: flex;
     justify-content: space-between;
-    padding: 0.1875rem 0.625rem;
-    border-radius: 0;
+    padding: spacing.$space-xs spacing.$space-sm;
 
     a:hover {
-      background-color: #f7e492;
+      background-color: colors.$page-number-hover;
     }
 
     &:first-child,
     &:last-child {
-      background-color: blueviolet;
+      background-color: colors.$pagination-button;
       border-radius: 0.2rem;
-      font-size: 0.5rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      padding: 0.5rem 1rem;
+      padding: spacing.$space-sm spacing.$space-normal;
 
       &:hover {
-        background-color: rgb(210 114 210);
+        background-color: colors.$pagination-button-hover;
       }
 
       &.disabled {
-        background-color: gray;
-        font-size: 0.5rem;
-        padding: 0.7rem 1rem;
-        border-radius: 0.2rem;
+        background-color: colors.$pagination-button-disabled;
+        font-size: 0.75rem;
+        padding: spacing.$space-md spacing.$space-normal;
       }
 
       a {
-        color: white;
+        color: colors.$pagination-button-text;
 
         &:hover {
           background: none;
@@ -47,9 +47,10 @@
 }
 
 .ngx-pagination .current {
-  margin: 1rem;
-  padding: 0.1875rem 0.625rem;
-  background: #f7e492 !important;
-  color: black !important;
+  margin: spacing.$space-normal spacing.$space-normal;
+  padding: spacing.$space-sm spacing.$space-normal !important;
+  background: colors.$page-number-active-background !important;
+  color: colors.$page-number-active !important;
+  text-align: center;
   cursor: default;
 }
