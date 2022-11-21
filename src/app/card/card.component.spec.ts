@@ -43,7 +43,7 @@ describe('CardComponent', () => {
     spy = spyOn(service, 'getPokemonData').and.returnValue(
       of(pokemonMockTransformedSecondReq)
     );
-    component.ngOnInit();
+    fixture.detectChanges();
     expect(component.pokemon.height).toBe(9);
     expect(spy).toHaveBeenCalledTimes(1);
   });

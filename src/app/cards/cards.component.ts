@@ -1,5 +1,6 @@
 import { PokemonDataService } from './../services/pokemonData.service';
 import { Component, OnInit } from '@angular/core';
+import { AllPokemonsType, Results } from '../card/card';
 
 @Component({
   selector: 'app-cards',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent implements OnInit {
-  pokemonNames: any = [];
+  pokemonNames: string[] = [];
   page = 1;
-  totalPokemons: any;
+  totalPokemons: number = 0;
+  name: string[] = [];
+
   constructor(private PokemonDataService: PokemonDataService) {}
 
   ngOnInit(): void {
@@ -18,10 +21,10 @@ export class CardsComponent implements OnInit {
 
   getPokemons(): void {
     this.PokemonDataService.getAllPokemons(12, this.page).subscribe(
-      (response: any) => {
+      (response: AllPokemonsType) => {
         this.totalPokemons = response.count;
 
-        response.results.forEach((result: any) => {
+        response.results.forEach((result: Results) => {
           this.pokemonNames.push(result.name);
           console.log(this.pokemonNames);
         });

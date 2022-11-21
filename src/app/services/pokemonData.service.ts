@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CardType, PokemonType } from '../card/card';
+import { AllPokemonsType, CardType, PokemonType } from '../card/card';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 
@@ -22,8 +22,8 @@ export class PokemonDataService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
-  getAllPokemons(limit: number, page: number) {
-    return this.http.get(
+  getAllPokemons(limit: number, page: number): Observable<AllPokemonsType> {
+    return this.http.get<AllPokemonsType>(
       `${this.apiUrl}/pokemon?limit=${limit}&offset=${(page - 1) * limit}`
     );
   }
