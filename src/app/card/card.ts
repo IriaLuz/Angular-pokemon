@@ -21,8 +21,8 @@ export interface CardType {
   past_types: any[];
   species: NameAndUrl;
   sprites: Sprites;
-  stats: Stat[];
-  types: Type[];
+  stats: PokemonStat[];
+  types: PokemonCreatureTypeResource[];
   weight: number;
 }
 export interface PokemonType {
@@ -167,10 +167,6 @@ export interface GenerationVii {
   icons: Icons;
   'ultra-sun-ultra-moon': UltraSunUltraMoon;
 }
-export interface Icons {
-  front_default: string;
-  front_female: any;
-}
 export interface UltraSunUltraMoon {
   front_default: string;
   front_female: any;
@@ -178,18 +174,18 @@ export interface UltraSunUltraMoon {
   front_shiny_female: any;
 }
 export interface GenerationViii {
-  icons: Icons2;
+  icons: Icons;
 }
-export interface Icons2 {
+export interface Icons {
   front_default: string;
   front_female: any;
 }
-export interface Stat {
+export interface PokemonStat {
   base_stat: number;
   effort: number;
   stat: NameAndUrl;
 }
-export interface Type {
+export interface PokemonCreatureTypeResource {
   slot: number;
   type: NameAndUrl;
 }
