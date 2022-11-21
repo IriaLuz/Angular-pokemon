@@ -1,6 +1,6 @@
 import { PokemonDataService } from './../services/pokemonData.service';
 import { Component, OnInit } from '@angular/core';
-import { AllPokemonsType, Results } from '../card/card';
+import { AllPokemonsType, NameAndUrl } from '../card/card';
 
 @Component({
   selector: 'app-cards',
@@ -24,7 +24,7 @@ export class CardsComponent implements OnInit {
       (response: AllPokemonsType) => {
         this.totalPokemons = response.count;
 
-        response.results.forEach((result: Results) => {
+        response.results.forEach((result: NameAndUrl) => {
           this.pokemonNames.push(result.name);
           console.log(this.pokemonNames);
         });

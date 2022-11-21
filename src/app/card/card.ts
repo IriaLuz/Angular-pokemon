@@ -2,17 +2,13 @@ export interface AllPokemonsType {
   count: number;
   next: string;
   previous: null;
-  results: Results[];
+  results: NameAndUrl[];
 }
 
-export interface Results {
-  name: string;
-  url: string;
-}
 export interface CardType {
   abilities: Ability[];
   base_experience: number;
-  forms: Form[];
+  forms: NameAndUrl[];
   game_indices: Index[];
   height: number;
   held_items: any[];
@@ -23,66 +19,41 @@ export interface CardType {
   name: string;
   order: number;
   past_types: any[];
-  species: Species;
+  species: NameAndUrl;
   sprites: Sprites;
   stats: Stat[];
   types: Type[];
   weight: number;
 }
-
 export interface PokemonType {
   height: number;
   name: string;
   weight: number;
   src: string;
 }
+export interface NameAndUrl {
+  name: string;
+  url: string;
+}
 export interface Ability {
-  ability: Ability2;
+  ability: NameAndUrl;
   is_hidden: boolean;
   slot: number;
 }
-export interface Ability2 {
-  name: string;
-  url: string;
-}
-export interface Form {
-  name: string;
-  url: string;
-}
 export interface Index {
   game_index: number;
-  version: Version;
-}
-export interface Version {
-  name: string;
-  url: string;
+  version: NameAndUrl;
 }
 export interface Mfe {
-  move: Move;
+  move: NameAndUrl;
   version_group_details: VersionGroupDetail[];
-}
-export interface Move {
-  name: string;
-  url: string;
 }
 export interface VersionGroupDetail {
   level_learned_at: number;
-  move_learn_method: MoveLearnMethod;
-  version_group: VersionGroup;
+  move_learn_method: NameAndUrl;
+  version_group: NameAndUrl;
 }
-export interface MoveLearnMethod {
-  name: string;
-  url: string;
-}
-export interface VersionGroup {
-  name: string;
-  url: string;
-}
-export interface Species {
-  name: string;
-  url: string;
-}
-export interface Sprites {
+interface FrontAndBack {
   back_default: string;
   back_female: any;
   back_shiny: string;
@@ -91,6 +62,8 @@ export interface Sprites {
   front_female: any;
   front_shiny: string;
   front_shiny_female: any;
+}
+export interface Sprites extends FrontAndBack {
   other: Other;
   versions: Versions;
 }
@@ -103,9 +76,7 @@ export interface DreamWorld {
   front_default: string;
   front_female: any;
 }
-export interface Home {
-  front_default: string;
-  front_female: any;
+export interface Home extends DreamWorld {
   front_shiny: string;
   front_shiny_female: any;
 }
@@ -123,133 +94,58 @@ export interface Versions {
   'generation-viii': GenerationViii;
 }
 export interface GenerationI {
-  'red-blue': RedBlue;
-  yellow: Yellow;
+  'red-blue': Color;
+  yellow: Color;
 }
-export interface RedBlue {
+export interface ColorBasics {
   back_default: string;
-  back_gray: string;
-  back_transparent: string;
   front_default: string;
-  front_gray: string;
   front_transparent: string;
 }
-export interface Yellow {
-  back_default: string;
+export interface Color extends ColorBasics {
   back_gray: string;
-  back_transparent: string;
-  front_default: string;
   front_gray: string;
-  front_transparent: string;
+  back_transparent: string;
 }
 export interface GenerationIi {
   crystal: Crystal;
-  gold: Gold;
-  silver: Silver;
+  gold: SilverGold;
+  silver: SilverGold;
 }
-export interface Crystal {
-  back_default: string;
+export interface Crystal extends ColorBasics {
   back_shiny: string;
   back_shiny_transparent: string;
-  back_transparent: string;
-  front_default: string;
   front_shiny: string;
   front_shiny_transparent: string;
-  front_transparent: string;
+  back_transparent: string;
 }
-export interface Gold {
-  back_default: string;
+export interface SilverGold extends ColorBasics {
   back_shiny: string;
-  front_default: string;
   front_shiny: string;
-  front_transparent: string;
-}
-export interface Silver {
-  back_default: string;
-  back_shiny: string;
-  front_default: string;
-  front_shiny: string;
-  front_transparent: string;
 }
 export interface GenerationIii {
   emerald: Emerald;
-  'firered-leafgreen': FireredLeafgreen;
-  'ruby-sapphire': RubySapphire;
+  'firered-leafgreen': FireredLeafgreenRubySafire;
+  'ruby-sapphire': FireredLeafgreenRubySafire;
 }
 export interface Emerald {
   front_default: string;
   front_shiny: string;
 }
-export interface FireredLeafgreen {
+export interface FireredLeafgreenRubySafire extends Emerald {
   back_default: string;
   back_shiny: string;
-  front_default: string;
-  front_shiny: string;
-}
-export interface RubySapphire {
-  back_default: string;
-  back_shiny: string;
-  front_default: string;
-  front_shiny: string;
 }
 export interface GenerationIv {
-  'diamond-pearl': DiamondPearl;
-  'heartgold-soulsilver': HeartgoldSoulsilver;
-  platinum: Platinum;
-}
-export interface DiamondPearl {
-  back_default: string;
-  back_female: any;
-  back_shiny: string;
-  back_shiny_female: any;
-  front_default: string;
-  front_female: any;
-  front_shiny: string;
-  front_shiny_female: any;
-}
-export interface HeartgoldSoulsilver {
-  back_default: string;
-  back_female: any;
-  back_shiny: string;
-  back_shiny_female: any;
-  front_default: string;
-  front_female: any;
-  front_shiny: string;
-  front_shiny_female: any;
-}
-export interface Platinum {
-  back_default: string;
-  back_female: any;
-  back_shiny: string;
-  back_shiny_female: any;
-  front_default: string;
-  front_female: any;
-  front_shiny: string;
-  front_shiny_female: any;
+  'diamond-pearl': FrontAndBack;
+  'heartgold-soulsilver': FrontAndBack;
+  platinum: FrontAndBack;
 }
 export interface GenerationV {
   'black-white': BlackWhite;
 }
-export interface BlackWhite {
-  animated: Animated;
-  back_default: string;
-  back_female: any;
-  back_shiny: string;
-  back_shiny_female: any;
-  front_default: string;
-  front_female: any;
-  front_shiny: string;
-  front_shiny_female: any;
-}
-export interface Animated {
-  back_default: string;
-  back_female: any;
-  back_shiny: string;
-  back_shiny_female: any;
-  front_default: string;
-  front_female: any;
-  front_shiny: string;
-  front_shiny_female: any;
+export interface BlackWhite extends FrontAndBack {
+  animated: FrontAndBack;
 }
 export interface GenerationVi {
   'omegaruby-alphasapphire': OmegarubyAlphasapphire;
@@ -291,17 +187,9 @@ export interface Icons2 {
 export interface Stat {
   base_stat: number;
   effort: number;
-  stat: Stat2;
-}
-export interface Stat2 {
-  name: string;
-  url: string;
+  stat: NameAndUrl;
 }
 export interface Type {
   slot: number;
-  type: Type2;
-}
-export interface Type2 {
-  name: string;
-  url: string;
+  type: NameAndUrl;
 }

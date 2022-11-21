@@ -35,7 +35,7 @@
     "@angular-eslint/eslint-plugin-template": "14.1.2",
     "@angular-eslint/schematics": "14.1.2",
     "@angular-eslint/template-parser": "14.1.2",
-    "@angular/cli": "~14.2.7",
+    "@angular/cli": "^15.0.0",
     "@angular/compiler-cli": "^14.2.0",
     "@bmatei/stylelint-builder-angular": "^1.1.0",
     "@commitlint/cli": "^17.2.0",
