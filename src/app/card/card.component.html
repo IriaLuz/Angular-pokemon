@@ -1,11 +1,11 @@
 <div *ngIf="[pokemon]" class="pokemonDescription">
-  <h3>{{ pokemon.name }}</h3>
+  <h3>{{ pokemon.name | titlecase }}</h3>
   <img
     class="bulbasaurImage"
     src="{{ pokemon.src }}"
     alt="{{ pokemon.name }}"
   />
-  <table height="20%">
+  <table>
     <tr>
       <td>Height</td>
       <td>{{ pokemon.height }}</td>

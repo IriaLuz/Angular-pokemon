@@ -1,25 +1,37 @@
 import { PokemonDataService } from '../services/pokemonData.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { PokemonType } from './card';
-import { tap } from 'rxjs/operators';
+import { takeUntil, Subject } from 'rxjs';
+// import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnDestroy {
+  @Input() pokemonName: string = '';
+  destroy$ = new Subject<void>();
+
   pokemon: PokemonType = { name: '', weight: 0, height: 0, src: '' };
+
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
-    this.onGetPokemon();
+    this.onGetPokemonData();
   }
 
-  onGetPokemon(): void {
+  onGetPokemonData(): void {
     this.pokemonService
-      .getPokemon()
-      .pipe(tap((data) => console.log('data from pokemon', data)))
-      .subscribe((pokemonData) => (this.pokemon = pokemonData));
+      .getPokemonData(this.pokemonName)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((pokemonData) => {
+        (this.pokemon = pokemonData), (error: any) => console.log(error);
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

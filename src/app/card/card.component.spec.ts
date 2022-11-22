@@ -24,7 +24,6 @@ describe('CardComponent', () => {
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
     service = TestBed.inject(PokemonDataService);
-    fixture.detectChanges();
   }));
 
   it('should create', () => {
@@ -32,19 +31,19 @@ describe('CardComponent', () => {
   });
 
   it('should set pokemon from the servive directly', () => {
-    spy = spyOn(service, 'getPokemon').and.returnValue(
+    spy = spyOn(service, 'getPokemonData').and.returnValue(
       of(pokemonMockTransformed)
     );
-    component.ngOnInit();
+    fixture.detectChanges();
     expect(component.pokemon.height).toBe(7);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should set pokemon from the servive directly', () => {
-    spy = spyOn(service, 'getPokemon').and.returnValue(
+    spy = spyOn(service, 'getPokemonData').and.returnValue(
       of(pokemonMockTransformedSecondReq)
     );
-    component.ngOnInit();
+    fixture.detectChanges();
     expect(component.pokemon.height).toBe(9);
     expect(spy).toHaveBeenCalledTimes(1);
   });
@@ -66,7 +65,7 @@ describe('CardComponent', () => {
 //   let fixture: ComponentFixture<CardComponent>;
 //   let PokemonService: PokemonDataService;
 //   // class Mockpokemon {
-//   //   getPokemon(): Observable<PokemonType> {
+//   //   getPokemonData(): Observable<PokemonType> {
 //   //     //removed the word Observable.of() is deprecated
 //   //     return of(pokemonMockTransformed);
 //   //   }
@@ -74,7 +73,7 @@ describe('CardComponent', () => {
 //   //instead to have the class mockpokemon do this:
 //   //Why in here I did not use the observable
 //   const stubPokemonService = {
-//     getPokemon: () => of(pokemonMockTransformed),
+//     getPokemonData: () => of(pokemonMockTransformed),
 //   };
 
 //   beforeEach(async () => {

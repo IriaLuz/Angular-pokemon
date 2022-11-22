@@ -1,4 +1,11 @@
-import { PokemonType, CardType } from './../card/card';
+import { PokemonType, CardType, AllPokemonsType } from './../card/card';
+
+export const allpokemonsMockResponse: AllPokemonsType = {
+  count: 1154,
+  next: 'https://pokeapi.co/api/v2/pokemon?offset=9&limit=9',
+  previous: null,
+  results: [{ name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' }],
+};
 
 export const pokemonMockTransformed: PokemonType = {
   name: 'bulbasaur',

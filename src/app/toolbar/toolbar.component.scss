@@ -1,0 +1,36 @@
+@use "../../styles/colors";
+@use "../../styles/spacing";
+@use "../../styles/typography";
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: colors.$toolbar-background;
+  font-weight: 600;
+}
+
+.toolbar img {
+  margin: 0 spacing.$space-normal;
+  width: 10%;
+  padding: spacing.$space-normal;
+}
+
+.toolbar #twitter-logo {
+  height: 3rem;
+  margin: 0 8px;
+}
+
+.toolbar #youtube-logo {
+  height: 3rem;
+  margin: 0 spacing.$space-normal;
+}
+
+.toolbar #twitter-logo:hover,
+.toolbar #youtube-logo:hover {
+  opacity: 0.8;
+}

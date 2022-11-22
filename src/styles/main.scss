@@ -1,4 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
-@use "./theme/colors";
-@use "./fonts/typography";
-@use "./theme/spacing";
+@use "./colors";
+@use "./typography";
+@use "./spacing";
+
+.ngx-pagination {
+  cursor: pointer;
+
+  li,
+  button {
+    color: colors.$page-number-text;
+    display: flex;
+    justify-content: space-between;
+    padding: spacing.$space-xs spacing.$space-sm;
+
+    a:hover {
+      background-color: colors.$page-number-hover;
+    }
+
+    &:first-child,
+    &:last-child {
+      background-color: colors.$pagination-button;
+      border-radius: 0.2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: spacing.$space-sm spacing.$space-normal;
+
+      &:hover {
+        background-color: colors.$pagination-button-hover;
+      }
+
+      &.disabled {
+        background-color: colors.$pagination-button-disabled;
+        font-size: 0.75rem;
+        padding: spacing.$space-md spacing.$space-normal;
+      }
+
+      a {
+        color: colors.$pagination-button-text;
+
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+}
+
+.ngx-pagination .current {
+  margin: spacing.$space-normal spacing.$space-normal;
+  padding: spacing.$space-sm spacing.$space-normal !important;
+  background: colors.$page-number-active-background !important;
+  color: colors.$page-number-text-active !important;
+  text-align: center;
+  cursor: default;
+}

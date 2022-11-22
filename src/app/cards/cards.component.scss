@@ -1,0 +1,13 @@
+@use "../../styles/spacing";
+
+.cards-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: spacing.$space-normal;
+  justify-content: center;
+  margin-top: spacing.$space-normal;
+}
+
+pagination-controls {
+  text-align: center;
+}
