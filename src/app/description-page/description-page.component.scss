@@ -1,0 +1,30 @@
+@use "../../styles/colors";
+@use "../../styles/spacing";
+
+.pokemonPageWrapper {
+  text-align: center;
+  justify-content: center;
+}
+
+.pokemonPageDescription {
+  border: 1px solid colors.$card-border;
+  padding: 3rem;
+
+  table {
+    table-layout: fixed;
+
+    td {
+      text-align: left;
+    }
+
+    tr,
+    td {
+      padding-bottom: spacing.$space-lg;
+    }
+
+    td:first-child {
+      padding-right: 10rem;
+      font-weight: 800;
+    }
+  }
+}

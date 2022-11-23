@@ -10,8 +10,9 @@ import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { CardsComponent } from './cards/cards.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { DescriptionPageComponent } from './description-page/description-page.component';
 @NgModule({
-  declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent],
+  declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent, DescriptionPageComponent],
   imports: [
     NgxPaginationModule,
     BrowserModule,

@@ -1,0 +1,40 @@
+<div *ngIf="[pokemon]" class="pokemonPageWrapper">
+  <h3>{{ pokemon.name | titlecase }}</h3>
+  <div class="pokemonPageDescription">
+    <img
+      class="bulbasaurImage"
+      src="{{ pokemon.src }}"
+      alt="{{ pokemon.name }}"
+    />
+    <table>
+      <tr>
+        <td>Height</td>
+        <td>{{ pokemon.height }}</td>
+      </tr>
+      <tr>
+        <td>Weigh</td>
+        <td>{{ pokemon.weight }}</td>
+      </tr>
+      <tr>
+        <td>Color</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <td>Egg group</td>
+        <td>monster</td>
+      </tr>
+      <tr>
+        <td>Growth Rate</td>
+        <td>Medium-Slow</td>
+      </tr>
+      <tr>
+        <td>Habitad</td>
+        <td>Grassland</td>
+      </tr>
+      <tr>
+        <td>Shape</td>
+        <td>Quadruped</td>
+      </tr>
+    </table>
+  </div>
+</div>
