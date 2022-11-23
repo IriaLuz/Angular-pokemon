@@ -1,11 +1,7 @@
 <div *ngIf="[pokemon]" class="pokemonPageWrapper">
   <h3>{{ pokemon.name | titlecase }}</h3>
   <div class="pokemonPageDescription">
-    <img
-      class="bulbasaurImage"
-      src="{{ pokemon.src }}"
-      alt="{{ pokemon.name }}"
-    />
+    <img class="pageImage" src="{{ pokemon.src }}" alt="{{ pokemon.name }}" />
     <table>
       <tr>
         <td>Height</td>

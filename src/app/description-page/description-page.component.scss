@@ -1,9 +1,13 @@
 @use "../../styles/colors";
 @use "../../styles/spacing";
 
+.pageImage {
+  width: 100%;
+  height: auto;
+}
+
 .pokemonPageWrapper {
   text-align: center;
-  justify-content: center;
 }
 
 .pokemonPageDescription {
