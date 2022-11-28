@@ -12,6 +12,9 @@ export const pokemonMockTransformed: PokemonType = {
   weight: 69,
   height: 7,
   src: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+  base_stat: 45,
+  stat_name: 'hp',
+  types: 'grass',
 };
 
 export const pokemonMockTransformedSecondReq: PokemonType = {
@@ -19,6 +22,9 @@ export const pokemonMockTransformedSecondReq: PokemonType = {
   weight: 69,
   height: 9,
   src: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
+  base_stat: 45,
+  stat_name: 'hp',
+  types: 'grass',
 };
 
 export const pokemonMockResponse: CardType = {

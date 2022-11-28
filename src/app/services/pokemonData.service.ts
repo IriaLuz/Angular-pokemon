@@ -12,6 +12,9 @@ export function transformToPokemonType(pokemonData: CardType): PokemonType {
     weight: pokemonData.weight,
     height: pokemonData.height,
     src: pokemonData.sprites.other['official-artwork'].front_default,
+    base_stat: pokemonData.stats[0].base_stat,
+    stat_name: pokemonData.stats[0].stat.name,
+    types: pokemonData.types[0].type.name,
   };
 }
 

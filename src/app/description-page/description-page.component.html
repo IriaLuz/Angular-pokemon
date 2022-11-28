@@ -15,21 +15,17 @@
         <td>Color</td>
         <td>Green</td>
       </tr>
+
       <tr>
-        <td>Egg group</td>
-        <td>monster</td>
+        <td>Stat</td>
+
+        <td>{{ pokemon.base_stat }}</td>
+
+        <td>{{ pokemon.stat_name }}</td>
       </tr>
       <tr>
-        <td>Growth Rate</td>
-        <td>Medium-Slow</td>
-      </tr>
-      <tr>
-        <td>Habitad</td>
-        <td>Grassland</td>
-      </tr>
-      <tr>
-        <td>Shape</td>
-        <td>Quadruped</td>
+        <td>Types</td>
+        <td>{{ pokemon.types | titlecase }}</td>
       </tr>
     </table>
   </div>
