@@ -25,7 +25,7 @@ export class CardsComponent implements OnInit {
 
         response.results.forEach((result) => {
           this.pokemonNames.push(result.name);
-          console.log(this.pokemonNames);
+          // console.log(this.pokemonNames);
         });
       }
     );

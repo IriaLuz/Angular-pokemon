@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CardsComponent } from './cards/cards.component';
 import { DescriptionPageComponent } from './description-page/description-page.component';
 const routes: Routes = [
-  { path: 'description', component: DescriptionPageComponent },
+  { path: 'pokemon/:name', component: DescriptionPageComponent },
   { path: '', component: CardsComponent },
 ];
 

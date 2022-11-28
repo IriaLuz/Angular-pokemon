@@ -2,7 +2,6 @@ import { PokemonDataService } from '../services/pokemonData.service';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { PokemonType } from './card';
 import { takeUntil, Subject } from 'rxjs';
-// import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card',
