@@ -12,11 +12,6 @@
         <td>{{ pokemon.weight }}</td>
       </tr>
       <tr>
-        <td>Color</td>
-        <td>Green</td>
-      </tr>
-
-      <tr>
         <td>Stat</td>
         <ul *ngFor="let stat of pokemon.stats">
           <li>{{ stat.stat.name }}: {{ stat.base_stat }}</li>
