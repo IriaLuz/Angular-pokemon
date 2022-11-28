@@ -8,63 +8,42 @@
 
 .pokemonPageWrapper {
   text-align: center;
-}
 
-.pokemonPageDescription {
-  border: 1px solid colors.$card-border;
-  padding: 3rem;
+  .pokemonPageDescription {
+    border: 1px solid colors.$card-border;
+    padding: 3rem;
+    text-align: left;
 
-  table {
-    table-layout: fixed;
+    table {
+      table-layout: fixed;
 
-    td {
-      text-align: left;
-    }
+      tr {
+        ul {
+          padding-left: 1.25rem;
+          list-style: none;
+        }
 
-    tr,
-    td {
-      padding-bottom: spacing.$space-lg;
-    }
+        td {
+          &:first-child {
+            vertical-align: text-top;
+            font-weight: bolder;
+          }
 
-    td:first-child {
-      padding-right: 10rem;
-      font-weight: 800;
+          &:last-child {
+            padding-left: 1.25rem;
+          }
+        }
+      }
+
+      tr,
+      td {
+        padding-bottom: spacing.$space-lg;
+      }
+
+      td:first-child {
+        padding-right: 10rem;
+        font-weight: 800;
+      }
     }
   }
 }
-
-.list {
-  display: flex;
-}
-
-// .profile {
-//   h1 {
-//     text-align: center;
-//   }
-//   table {
-//     tr {
-//       ul {
-//         padding-left: 1.25rem;
-//         list-style: none;
-//       }
-//       td {
-//         padding-top: spacing.$space-sm;
-//         ul {
-//           &:first-child {
-//             margin-top: 0;
-//           }
-//           li {
-//             padding-top: 0;
-//           }
-//         }
-//         &:first-child {
-//           vertical-align: text-top;
-//           font-weight: bolder;
-//         }
-//         &:last-child {
-//           padding-left: 1.25rem;
-//         }
-//       }
-//     }
-//   }
-// }
