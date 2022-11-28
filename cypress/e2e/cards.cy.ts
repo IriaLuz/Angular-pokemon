@@ -15,18 +15,36 @@ describe('in my home page', () => {
     cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon?limit=12&offset=0', {
       fixture: 'pokemon-first-page.json',
     });
-    cy.get('app-card').first().contains('Bulbasaur');
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/*', {
+      fixture: 'pokemon-1.json',
+    });
+    cy.visit('http://localhost:4200/');
+    cy.get('app-card').first().contains('Wulbasaur');
   });
 
-  it('Click the "Previus" button on the first page', () => {
-    cy.contains('Previous').click();
-  });
-
-  it('Click the "Next" button on the first page', () => {
+  it('Dynamic test 2', () => {
+    cy.intercept(
+      'GET',
+      'https://pokeapi.co/api/v2/pokemon?limit=12&offset=12',
+      {
+        fixture: 'pokemon-second-page.json',
+      }
+    );
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/*', {
+      fixture: 'pokemon-13.json',
+    });
     cy.contains('Next').click();
+    cy.get('app-card').first().contains('Teedle');
   });
 
-  it('Click the "Learn More button" on the card', () => {
+  it('Dynamic test 3', () => {
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon?limit=12&offset=0', {
+      fixture: 'pokemon-first-page.json',
+    });
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/*', {
+      fixture: 'pokemon-1.json',
+    });
     cy.contains('Learn More').click();
+    cy.get('app-description-page').first().contains('Wulbasaur');
   });
 });
