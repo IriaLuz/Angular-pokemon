@@ -19,7 +19,7 @@
 
       tr {
         ul {
-          padding-left: 1.25rem;
+          padding-left: spacing.$space-lg;
           list-style: none;
         }
 
@@ -33,7 +33,7 @@
           }
 
           &:last-child {
-            padding-left: 1.25rem;
+            padding-left: spacing.$space-lg;
           }
         }
       }
