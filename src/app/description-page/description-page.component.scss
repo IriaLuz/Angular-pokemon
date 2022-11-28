@@ -8,41 +8,34 @@
 
 .pokemonPageWrapper {
   text-align: center;
+}
 
-  .pokemonPageDescription {
-    border: 1px solid colors.$card-border;
-    padding: 3rem;
-    text-align: left;
+.pokemonPageDescription {
+  border: 1px solid colors.$card-border;
+  padding: 3rem;
+  text-align: left;
 
-    table {
-      table-layout: fixed;
+  table {
+    table-layout: fixed;
 
-      tr {
+    tr {
+      td {
+        padding-bottom: spacing.$space-lg;
+
+        &:first-child {
+          padding-right: 10rem;
+          font-weight: 800;
+          vertical-align: text-top;
+        }
+
+        &:last-child {
+          padding-left: 1.25rem;
+        }
+
         ul {
           padding-left: 1.25rem;
           list-style: none;
         }
-
-        td {
-          &:first-child {
-            vertical-align: text-top;
-            font-weight: bolder;
-          }
-
-          &:last-child {
-            padding-left: 1.25rem;
-          }
-        }
-      }
-
-      tr,
-      td {
-        padding-bottom: spacing.$space-lg;
-      }
-
-      td:first-child {
-        padding-right: 10rem;
-        font-weight: 800;
       }
     }
   }
