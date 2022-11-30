@@ -11,7 +11,6 @@ import { DescriptionPageComponent } from './description-page.component';
 describe('DescriptionPageComponent', () => {
   let spy: jasmine.Spy;
   let service: PokemonDataService;
-  let component: DescriptionPageComponent;
   let fixture: ComponentFixture<DescriptionPageComponent>;
 
   beforeEach(async () => {
@@ -21,12 +20,11 @@ describe('DescriptionPageComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(DescriptionPageComponent);
-    component = fixture.componentInstance;
     service = TestBed.inject(PokemonDataService);
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
   it('should set pokemon from the servive directly', () => {
@@ -34,7 +32,7 @@ describe('DescriptionPageComponent', () => {
       of(pokemonMockTransformed)
     );
     fixture.detectChanges();
-    expect(component.pokemon.weight).toBe(69);
+    expect(fixture.componentInstance.pokemon.weight).toBe(69);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
