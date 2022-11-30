@@ -5,29 +5,11 @@ describe('in my home page', () => {
 
   it('has disabled "Previous" link in the fist page', () => {
     cy.visit('/');
-    const findInPage = () => {
-      cy.get('li:has(span:contains(Previous))').then((element) => {
-        if (element.hasClass('disabled')) {
-          return;
-        }
-        cy.wrap(element).click();
-        findInPage();
-      });
-    };
     findInPage();
   });
 
   it('has disabled "Next" link in the last page', () => {
     cy.visit('/');
-    const findInPage = () => {
-      cy.get('li:has(span:contains(Next))').then((element) => {
-        if (element.hasClass('disabled')) {
-          return;
-        }
-        cy.wrap(element).click();
-        findInPage();
-      });
-    };
     findInPage();
   });
 
@@ -68,3 +50,13 @@ describe('in my home page', () => {
     cy.get('app-description-page').first().contains('Poison');
   });
 });
+
+const findInPage = () => {
+  cy.get('li:has(span:contains(Next))').then((element) => {
+    if (element.hasClass('disabled')) {
+      return;
+    }
+    cy.wrap(element).click();
+    findInPage();
+  });
+};
