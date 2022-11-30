@@ -5,12 +5,12 @@ describe('in my home page', () => {
 
   it('has disabled "Previous" link in the fist page', () => {
     cy.visit('/');
-    findInPage();
+    findInPage('li:has(span:contains(Previous))');
   });
 
   it('has disabled "Next" link in the last page', () => {
     cy.visit('/');
-    findInPage();
+    findInPage('li:has(span:contains(Next))');
   });
 
   it('shows Wulbasaur as first pokemon in the first page', () => {
@@ -51,12 +51,11 @@ describe('in my home page', () => {
   });
 });
 
-const findInPage = () => {
-  cy.get('li:has(span:contains(Next))').then((element) => {
+const findInPage = (item: string) => {
+  cy.get(item).then((element) => {
     if (element.hasClass('disabled')) {
       return;
     }
     cy.wrap(element).click();
-    findInPage();
   });
 };
