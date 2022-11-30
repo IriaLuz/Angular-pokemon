@@ -15,7 +15,6 @@ import { routes } from '../app-routing.module';
 describe('ToolbarComponent', () => {
   let router: Router;
   let location: Location;
-  // let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
 
   beforeEach(() => {
@@ -35,7 +34,6 @@ describe('ToolbarComponent', () => {
     const link =
       fixture.debugElement.nativeElement.querySelector('#homeLink').textContent;
     expect(link).toContain('HOME');
-    console.log(link);
   });
 
   it('should click in "Home" link and navigate to home page', fakeAsync(() => {

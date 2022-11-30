@@ -55,7 +55,6 @@ export class DescriptionPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((pokemonData) => {
         (this.pokemon = pokemonData), (error: any) => console.log(error);
-        console.log(this.pokemon, 'here the data');
       });
   }
 
