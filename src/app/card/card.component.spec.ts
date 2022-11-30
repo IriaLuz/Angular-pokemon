@@ -8,6 +8,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CardComponent } from './card.component';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CardComponent', () => {
   let spy: jasmine.Spy;
@@ -19,7 +20,7 @@ describe('CardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CardComponent],
       providers: [PokemonDataService],
-      imports: [HttpClientTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
     fixture = TestBed.createComponent(CardComponent);
     component = fixture.componentInstance;
