@@ -12,6 +12,7 @@
   text-align: center;
   width: 15rem;
   height: 100%;
+  box-sizing: border-box;
   border: 1px solid colors.$card-border;
 
   table {
@@ -19,15 +20,11 @@
 
     td {
       padding-right: spacing.$space-xl;
-    }
-
-    tr,
-    td {
       padding-bottom: spacing.$space-lg;
-    }
 
-    td:first-child {
-      font-weight: 800;
+      &:first-child {
+        font-weight: 800;
+      }
     }
   }
 }
