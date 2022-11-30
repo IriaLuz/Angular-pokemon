@@ -12,8 +12,9 @@ import { CardsComponent } from './cards/cards.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { DescriptionPageComponent } from './description-page/description-page.component';
 import { ButtonComponent } from './button/button.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 @NgModule({
-  declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent, DescriptionPageComponent, ButtonComponent],
+  declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent, DescriptionPageComponent, ButtonComponent, NotFoundPageComponent],
   imports: [
     NgxPaginationModule,
     BrowserModule,
