@@ -29,15 +29,7 @@ describe('ToolbarComponent', () => {
     fixture = TestBed.createComponent(ToolbarComponent);
   });
 
-  it('should render "HOME" link in the toolbar', () => {
-    const link =
-      fixture.debugElement.nativeElement.querySelector('#homeLink').textContent;
-    expect(link).toContain('HOME');
+  it('should create', () => {
+    expect(fixture.componentInstance).toBeTruthy();
   });
-
-  it('should click in "Home" link and navigate to home page', fakeAsync(() => {
-    router.navigate(['']);
-    tick();
-    expect(location.path()).toBe('/');
-  }));
 });
