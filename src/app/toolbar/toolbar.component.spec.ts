@@ -27,7 +27,6 @@ describe('ToolbarComponent', () => {
     location = TestBed.inject(Location);
 
     fixture = TestBed.createComponent(ToolbarComponent);
-    router.initialNavigation();
   });
 
   it('should render "HOME" link in the toolbar', () => {
