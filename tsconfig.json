@@ -30,8 +30,5 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  // "include": ["src/**/*", "cypress/e2e/cards.cy.ts"],
-  // "exclude": ["./cypress.config.ts"]
-  "include": ["src", "node_modules/cypress"],
-  "exclude": ["node_modules/cypress"]
+  "include": ["src"]
 }

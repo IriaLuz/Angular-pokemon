@@ -1,0 +1,16 @@
+@use "../../styles/colors";
+@use "../../styles/spacing";
+
+.notFoundPageWrapper {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.whosIsThat-Image {
+  width: 65%;
+}
+
+a {
+  padding: spacing.$space-sm;
+  color: colors.$here-link;
+}

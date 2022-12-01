@@ -10,5 +10,6 @@
 </div>
 
 <pagination-controls
+  [responsive]="true"
   (pageChange)="page = $event; pokemonNames = []; getPokemons()"
 ></pagination-controls>

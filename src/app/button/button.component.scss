@@ -1,0 +1,9 @@
+@use "../../styles/colors";
+@use "../../styles/spacing";
+
+.card-button {
+  padding: spacing.$space-sm spacing.$space-lg;
+  background-color: colors.$card-button-background;
+  border: 1px solid colors.$card-button-border;
+  font-weight: 800;
+}

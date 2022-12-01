@@ -1,0 +1,42 @@
+@use "../../styles/colors";
+@use "../../styles/spacing";
+
+.pageImage {
+  width: 100%;
+  height: auto;
+}
+
+.pokemonPageWrapper {
+  text-align: center;
+
+  & .pokemonPageDescription {
+    border: 1px solid colors.$card-border;
+    padding: 3rem;
+    text-align: left;
+  }
+}
+
+.pokemonProperties {
+  table-layout: fixed;
+
+  tr {
+    ul {
+      padding-left: spacing.$space-lg;
+      list-style: none;
+    }
+
+    td {
+      padding-bottom: spacing.$space-lg;
+
+      &:first-child {
+        padding-right: 10rem;
+        font-weight: 800;
+        vertical-align: text-top;
+      }
+
+      &:last-child {
+        padding-left: spacing.$space-lg;
+      }
+    }
+  }
+}
