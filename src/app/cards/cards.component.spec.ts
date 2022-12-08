@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PokemonDataService } from '../services/pokemonData.service';
 
 import { CardsComponent } from './cards.component';
-import { allpokemonsMockResponse } from '../services/mockData';
+import { allpokemonsMockResponse } from '../mockData';
 import { of } from 'rxjs';
 import { NgxPaginationModule } from 'ngx-pagination';
 

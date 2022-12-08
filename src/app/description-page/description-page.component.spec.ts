@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { pokemonMockTransformed } from '../services/mockData';
+import { pokemonMockTransformed } from '../mockData';
 import { PokemonDataService } from '../services/pokemonData.service';
 
 import { DescriptionPageComponent } from './description-page.component';

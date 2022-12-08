@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { PokemonType } from '../card/card';
+import { PokemonType } from '../types';
 import { PokemonDataService } from '../services/pokemonData.service';
 
 @Component({

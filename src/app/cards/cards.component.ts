@@ -1,5 +1,6 @@
 import { PokemonDataService } from './../services/pokemonData.service';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cards',
@@ -19,14 +20,15 @@ export class CardsComponent implements OnInit {
   }
 
   getPokemons(): void {
-    this.PokemonDataService.getAllPokemons(12, this.page).subscribe(
-      (response) => {
-        this.totalPokemons = response.count;
+    this.PokemonDataService.getAllPokemons(
+      environment.pokemonsPerPage,
+      this.page
+    ).subscribe((response) => {
+      this.totalPokemons = response.count;
 
-        response.results.forEach((result) => {
-          this.pokemonNames.push(result.name);
-        });
-      }
-    );
+      response.results.forEach((result) => {
+        this.pokemonNames.push(result.name);
+      });
+    });
   }
 }

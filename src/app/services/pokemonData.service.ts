@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AllPokemonsType, CardType, PokemonType } from '../card/card';
+import { AllPokemonsType, CardType, PokemonType } from '../types';
 import { environment } from '../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
 

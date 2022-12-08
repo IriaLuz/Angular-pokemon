@@ -1,7 +1,7 @@
 import {
   pokemonMockTransformed,
   pokemonMockTransformedSecondReq,
-} from './../services/mockData';
+} from '../mockData';
 import { PokemonDataService } from './../services/pokemonData.service';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 

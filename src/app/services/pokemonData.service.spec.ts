@@ -4,7 +4,7 @@ import {
   HttpClientTestingModule,
 } from '@angular/common/http/testing';
 
-import { pokemonMockTransformed, pokemonMockResponse } from './mockData';
+import { pokemonMockTransformed, pokemonMockResponse } from '../mockData';
 
 import { PokemonDataService } from './pokemonData.service';
 import { HttpClient } from '@angular/common/http';
