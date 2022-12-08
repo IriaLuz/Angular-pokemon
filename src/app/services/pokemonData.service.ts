@@ -25,13 +25,13 @@ export class PokemonDataService {
   constructor(private http: HttpClient) {
     this.getAllPokemonNames().subscribe((response) => {
       this.pokeNames = response;
+      // console.log('hola this is data', this.pokeNames);
     });
 
     this.searchString.subscribe((data) => {
       this.filteredPokeNames.emit(
         this.getAllValidPokemons(data, this.pokeNames)
       );
-      console.log(data);
     });
   }
 
@@ -62,10 +62,9 @@ export class PokemonDataService {
 
   // given a string, this funtion will return an array of names that start with the given string
   getAllValidPokemons(inputString: string, allNames: string[]): string[] {
-    let filtered: string[] = [];
-    allNames.forEach((item) => {
-      if (item.startsWith(inputString.toLowerCase())) filtered.push(item);
-    });
+    const filtered = allNames.filter((name) =>
+      name.startsWith(inputString.toLowerCase())
+    );
     return filtered;
   }
 

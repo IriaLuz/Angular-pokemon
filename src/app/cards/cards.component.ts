@@ -25,7 +25,6 @@ export class CardsComponent implements OnInit, OnDestroy {
     });
 
     this.PokemonDataService.filteredPokeNames.subscribe((data) => {
-      console.log('DATA: ', data);
       this.filteredPokemonNames = data;
     });
   }
