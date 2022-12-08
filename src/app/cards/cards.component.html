@@ -33,6 +33,7 @@
       <app-card class="pokemonName" [pokemonName]="name"></app-card>
     </div>
     <pagination-controls
+      [responsive]="true"
       (pageChange)="page = $event; pokemonNames = []; getPokemons()"
     ></pagination-controls>
   </div>
