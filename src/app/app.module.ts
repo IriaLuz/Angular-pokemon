@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
@@ -32,6 +33,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    FormsModule,
   ],
   providers: [PokemonDataService],
   bootstrap: [AppComponent],

@@ -1,15 +1,34 @@
-<div
-  class="cards-container"
-  *ngFor="
-    let name of pokemonNames
-      | paginate
-        : { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }
-  "
->
-  <app-card [pokemonName]="name"></app-card>
+<div *ngIf="searchText === ''; else elseBlock">
+  <div
+    class="cards-container"
+    *ngFor="
+      let name of pokemonNames
+        | paginate
+          : { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }
+    "
+  >
+    <app-card [pokemonName]="name"></app-card>
+  </div>
+
+  <pagination-controls
+    [responsive]="true"
+    (pageChange)="page = $event; pokemonNames = []; getPokemons()"
+  ></pagination-controls>
 </div>
 
-<pagination-controls
-  [responsive]="true"
-  (pageChange)="page = $event; pokemonNames = []; getPokemons()"
-></pagination-controls>
+<ng-template #elseBlock>
+  <!-- <p>{{ searchText }}</p> -->
+  <div
+    class="cards-container"
+    *ngFor="
+      let name of filteredPokemonNames
+        | paginate
+          : { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }
+    "
+  >
+    <app-card [pokemonName]="name"></app-card>
+  </div>
+  <pagination-controls
+    (pageChange)="page = $event; pokemonNames = []; getPokemons()"
+  ></pagination-controls>
+</ng-template>

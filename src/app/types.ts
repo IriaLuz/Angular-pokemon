@@ -2,13 +2,13 @@ export interface AllPokemonsType {
   count: number;
   next: string;
   previous: null;
-  results: NameAndUrl[];
+  results: Result[];
 }
 
 export interface CardType {
   abilities: Ability[];
   base_experience: number;
-  forms: NameAndUrl[];
+  forms: Result[];
   game_indices: Index[];
   height: number;
   held_items: any[];
@@ -19,7 +19,7 @@ export interface CardType {
   name: string;
   order: number;
   past_types: any[];
-  species: NameAndUrl;
+  species: Result;
   sprites: Sprites;
   stats: PokemonStat[];
   types: PokemonCreatureTypeResource[];
@@ -34,27 +34,27 @@ export interface PokemonType {
   types?: PokemonCreatureTypeResource[];
 }
 
-export interface NameAndUrl {
+export interface Result {
   name: string;
   url: string;
 }
 export interface Ability {
-  ability: NameAndUrl;
+  ability: Result;
   is_hidden: boolean;
   slot: number;
 }
 export interface Index {
   game_index: number;
-  version: NameAndUrl;
+  version: Result;
 }
 export interface Mfe {
-  move: NameAndUrl;
+  move: Result;
   version_group_details: VersionGroupDetail[];
 }
 export interface VersionGroupDetail {
   level_learned_at: number;
-  move_learn_method: NameAndUrl;
-  version_group: NameAndUrl;
+  move_learn_method: Result;
+  version_group: Result;
 }
 interface FrontAndBack {
   back_default: string;
@@ -186,9 +186,9 @@ export interface Icons {
 export interface PokemonStat {
   base_stat: number;
   effort: number;
-  stat: NameAndUrl;
+  stat: Result;
 }
 export interface PokemonCreatureTypeResource {
   slot: number;
-  type: NameAndUrl;
+  type: Result;
 }
