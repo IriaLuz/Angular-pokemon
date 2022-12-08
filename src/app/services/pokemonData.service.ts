@@ -25,7 +25,6 @@ export class PokemonDataService {
   constructor(private http: HttpClient) {
     this.getAllPokemonNames().subscribe((response) => {
       this.pokeNames = response;
-      // console.log('hola this is data', this.pokeNames);
     });
 
     this.searchString.subscribe((data) => {
@@ -60,7 +59,6 @@ export class PokemonDataService {
     return data;
   }
 
-  // given a string, this funtion will return an array of names that start with the given string
   getAllValidPokemons(inputString: string, allNames: string[]): string[] {
     const filtered = allNames.filter((name) =>
       name.startsWith(inputString.toLowerCase())
