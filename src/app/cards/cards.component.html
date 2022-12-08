@@ -30,7 +30,7 @@
               }
       "
     >
-      <app-card [pokemonName]="name"></app-card>
+      <app-card class="pokemonName" [pokemonName]="name"></app-card>
     </div>
     <pagination-controls
       (pageChange)="page = $event; pokemonNames = []; getPokemons()"
@@ -40,6 +40,6 @@
 
 <ng-template #noPagination>
   <div class="cards-container" *ngFor="let name of filteredPokemonNames">
-    <app-card [pokemonName]="name"></app-card>
+    <app-card class="pokemonName" [pokemonName]="name"></app-card>
   </div>
 </ng-template>

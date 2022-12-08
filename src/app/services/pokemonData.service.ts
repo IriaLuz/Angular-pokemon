@@ -31,6 +31,7 @@ export class PokemonDataService {
       this.filteredPokeNames.emit(
         this.getAllValidPokemons(data, this.pokeNames)
       );
+      console.log(data);
     });
   }
 
@@ -63,7 +64,7 @@ export class PokemonDataService {
   getAllValidPokemons(inputString: string, allNames: string[]): string[] {
     let filtered: string[] = [];
     allNames.forEach((item) => {
-      if (item.startsWith(inputString)) filtered.push(item);
+      if (item.startsWith(inputString.toLowerCase())) filtered.push(item);
     });
     return filtered;
   }
