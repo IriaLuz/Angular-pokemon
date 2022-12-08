@@ -18,17 +18,30 @@
 
 <ng-template #elseBlock>
   <!-- <p>{{ searchText }}</p> -->
-  <div
-    class="cards-container"
-    *ngFor="
-      let name of filteredPokemonNames
-        | paginate
-          : { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }
-    "
-  >
+  <div *ngIf="filteredPokemonNames.length > 12; else noPagination">
+    <div
+      class="cards-container"
+      *ngFor="
+        let name of filteredPokemonNames
+          | paginate
+            : {
+                itemsPerPage: 12,
+                currentPage: page,
+                totalItems: filteredPokemonNames.length
+              }
+      "
+    >
+      <app-card [pokemonName]="name"></app-card>
+    </div>
+    <pagination-controls
+      (pageChange)="page = $event; pokemonNames = []; getPokemons()"
+    ></pagination-controls>
+  </div>
+</ng-template>
+
+<ng-template #noPagination>
+  <!-- <p>{{ searchText }}</p> -->
+  <div class="cards-container" *ngFor="let name of filteredPokemonNames">
     <app-card [pokemonName]="name"></app-card>
   </div>
-  <pagination-controls
-    (pageChange)="page = $event; pokemonNames = []; getPokemons()"
-  ></pagination-controls>
 </ng-template>
