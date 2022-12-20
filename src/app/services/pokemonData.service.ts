@@ -63,6 +63,7 @@ export class PokemonDataService {
     const filtered = allNames.filter((name) =>
       name.startsWith(inputString.toLowerCase())
     );
+    console.log({ filtered, allNames });
     return filtered;
   }
 
