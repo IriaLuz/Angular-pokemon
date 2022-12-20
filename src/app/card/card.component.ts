@@ -1,6 +1,6 @@
 import { PokemonDataService } from '../services/pokemonData.service';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { PokemonType } from './card';
+import { PokemonType } from '../types';
 import { takeUntil, Subject } from 'rxjs';
 @Component({
   selector: 'app-card',

@@ -1,0 +1,24 @@
+.form-wrapper {
+  width: 14rem;
+  display: flex;
+}
+
+.form-item {
+  font-size: inherit;
+  border-width: 0 0 1px;
+  border-color: white;
+  background: transparent;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+input,
+::placeholder {
+  color: white;
+}
+
+fa-icon {
+  color: white;
+}

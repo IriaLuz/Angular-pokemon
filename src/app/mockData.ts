@@ -1,4 +1,4 @@
-import { PokemonType, CardType, AllPokemonsType } from './../card/card';
+import { PokemonType, CardType, AllPokemonsType } from './types';
 
 export const allpokemonsMockResponse: AllPokemonsType = {
   count: 1154,

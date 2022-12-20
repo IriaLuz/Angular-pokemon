@@ -35,6 +35,7 @@ describe('in my home page', () => {
     cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/*', {
       fixture: 'pokemon-13.json',
     });
+    cy.visit('/');
     cy.contains('Next').click();
     cy.get('app-card').first().contains('Teedle');
   });
@@ -46,8 +47,9 @@ describe('in my home page', () => {
     cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/*', {
       fixture: 'pokemon-1.json',
     });
+    cy.visit('/');
     cy.contains('Learn More').click();
-    cy.get('app-description-page').first().contains('Poison');
+    cy.get('app-description-page').contains('Poison');
   });
 });
 
