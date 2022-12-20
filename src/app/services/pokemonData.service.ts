@@ -61,7 +61,7 @@ export class PokemonDataService {
 
   getAllValidPokemons(inputString: string, allNames: string[]): string[] {
     const filtered = allNames.filter((name) =>
-      name.includes(inputString.toLowerCase())
+      name.startsWith(inputString.toLowerCase())
     );
     return filtered;
   }
