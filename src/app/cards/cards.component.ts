@@ -42,7 +42,7 @@ export class CardsComponent implements OnInit, OnDestroy {
       .subscribe((response: AllPokemonsType) => {
         this.totalPokemons = response.count;
 
-        response.results.forEach((result: Result) => {
+        response.results.map((result: Result) => {
           this.pokemonNames.push(result.name);
         });
       });
