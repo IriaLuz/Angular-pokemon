@@ -1,24 +1,34 @@
 import { CardType, PokemonType, AllPokemonsType } from '../types';
 
-export function mapGetAllPokemons(
-  allPokemonsType: AllPokemonsType
-): AllPokemonsType {
+export function mapGetAllPokemons({
+  count,
+  next,
+  previous,
+  results,
+}: AllPokemonsType): AllPokemonsType {
   return {
-    count: allPokemonsType.count,
-    next: allPokemonsType.next,
-    previous: allPokemonsType.previous,
-    results: allPokemonsType.results,
+    count: count,
+    next: next,
+    previous: previous,
+    results: results,
   };
 }
 
-export function transformToPokemonType(pokemonData: CardType): PokemonType {
+export function transformToPokemonType({
+  name,
+  weight,
+  height,
+  sprites,
+  stats,
+  types,
+}: CardType): PokemonType {
   return {
-    name: pokemonData.name,
-    weight: pokemonData.weight,
-    height: pokemonData.height,
-    src: pokemonData.sprites.other['official-artwork'].front_default,
-    stats: pokemonData.stats,
-    types: pokemonData.types,
+    name: name,
+    weight: weight,
+    height: height,
+    src: sprites.other['official-artwork'].front_default,
+    stats: stats,
+    types: types,
   };
 }
 
