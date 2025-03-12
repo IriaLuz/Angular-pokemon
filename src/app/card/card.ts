@@ -26,29 +26,13 @@ export interface CardType {
   weight: number;
 }
 
-export interface StatType {
-  base_stat: number;
-  effort: number;
-  stat: {
-    name: string;
-  };
-}
-
-export interface TypeInfo {
-  slot: number;
-  type: {
-    name: string;
-  };
-}
-
-
 export interface PokemonType {
+  height: number;
   name: string;
   weight: number;
-  height: number;
   src: string;
-  stats: ReadonlyArray<StatType>;
-  types: ReadonlyArray<TypeInfo>;  
+  stats?: PokemonStat[];
+  types?: PokemonCreatureTypeResource[];
 }
 
 export interface NameAndUrl {
