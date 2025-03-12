@@ -43,10 +43,8 @@ export class PokemonDataService {
     let errorMessage = 'An unknown error occurred. Please try again.';
     
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
       errorMessage = `Client error: ${error.error.message}`;
     } else {
-      // Server-side error
       errorMessage = `Server error (${error.status}): ${error.message}`;
     }
   
