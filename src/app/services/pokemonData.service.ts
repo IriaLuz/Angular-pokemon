@@ -40,9 +40,18 @@ export class PokemonDataService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error.message);
-    return throwError(
-      () => new Error('a data error occurred, please try again.')
-    );
+    let errorMessage = 'An unknown error occurred. Please try again.';
+    
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Client error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Server error (${error.status}): ${error.message}`;
+    }
+  
+    console.error(`[PokemonDataService] ${errorMessage}`);
+    return throwError(() => new Error(errorMessage));
   }
+  
 }
