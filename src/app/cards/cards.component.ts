@@ -10,7 +10,7 @@ export class CardsComponent implements OnInit {
   pokemonNames: string[] = [];
   page = 1;
   totalPokemons: number = 0;
-  name: string[] = [];
+  isLoading = true; 
 
   constructor(private PokemonDataService: PokemonDataService) {}
 
@@ -19,14 +19,22 @@ export class CardsComponent implements OnInit {
   }
 
   getPokemons(): void {
+    this.isLoading = true; 
     this.PokemonDataService.getAllPokemons(12, this.page).subscribe(
       (response) => {
         this.totalPokemons = response.count;
-
-        response.results.forEach((result) => {
-          this.pokemonNames.push(result.name);
-        });
+        this.pokemonNames = response.results.map((result) => result.name);
+        
+        
+        setTimeout(() => {
+          this.isLoading = false; 
+        }, 500); 
+      },
+      (error) => {
+        console.error("Error fetching data:", error);
+        this.isLoading = false; 
       }
     );
   }
 }
+

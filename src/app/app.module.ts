@@ -16,9 +16,10 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 
 import { environment } from 'src/environments/environment';
 import { API_URL } from './app-tokens';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent, DescriptionPageComponent, ButtonComponent, NotFoundPageComponent],
+  declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent, DescriptionPageComponent, ButtonComponent, NotFoundPageComponent, LoaderComponent],
   imports: [
     NgxPaginationModule,
     BrowserModule,

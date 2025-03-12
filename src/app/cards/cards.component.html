@@ -1,3 +1,5 @@
+<app-loader *ngIf="isLoading"></app-loader>
+
 <div
   class="cards-container"
   *ngFor="
@@ -13,3 +15,4 @@
   [responsive]="true"
   (pageChange)="page = $event; pokemonNames = []; getPokemons()"
 ></pagination-controls>
+
