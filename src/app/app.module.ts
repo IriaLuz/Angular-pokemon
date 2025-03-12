@@ -13,6 +13,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { DescriptionPageComponent } from './description-page/description-page.component';
 import { ButtonComponent } from './button/button.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+
+import { environment } from 'src/environments/environment';
+import { API_URL } from './app-tokens';
+
 @NgModule({
   declarations: [AppComponent, CardComponent, CardsComponent, ToolbarComponent, DescriptionPageComponent, ButtonComponent, NotFoundPageComponent],
   imports: [
@@ -21,7 +25,10 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [PokemonDataService],
+  providers:  [
+    { provide: API_URL, useValue: environment.apiUrl }, 
+    PokemonDataService, 
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
