@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { AllPokemonsType, CardType, PokemonType } from '../card/card';
 import { environment } from '../../environments/environment';
 import { map, catchError, tap } from 'rxjs/operators';
@@ -21,15 +21,16 @@ export function transformToPokemonType(pokemonData: CardType): PokemonType {
 })
 export class PokemonDataService {
   private apiUrl = environment.apiUrl;
-  private cache = new Map<string, PokemonType>(); // Cache storage
+  private cache = new Map<string, PokemonType>();
 
   constructor(private http: HttpClient) {}
 
   getAllPokemons(limit: number, page: number): Observable<AllPokemonsType> {
-    return this.http
-      .get<AllPokemonsType>(
-        `${this.apiUrl}/pokemon?limit=${limit}&offset=${(page - 1) * limit}`
-      )
+    const params = new HttpParams()
+      .set('limit', limit.toString())
+      .set('offset', ((page - 1) * limit).toString());
+  
+    return this.http.get<AllPokemonsType>(`${this.apiUrl}/pokemon`, { params })
       .pipe(catchError(this.handleError));
   }
 
