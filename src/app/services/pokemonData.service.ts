@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AllPokemonsType, CardType, PokemonType } from '../card/card';
 import { environment } from '../../environments/environment';
-import { map, catchError } from 'rxjs/operators';
-
-import { Observable, throwError } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
 
 export function transformToPokemonType(pokemonData: CardType): PokemonType {
   return {
@@ -22,6 +21,8 @@ export function transformToPokemonType(pokemonData: CardType): PokemonType {
 })
 export class PokemonDataService {
   private apiUrl = environment.apiUrl;
+  private cache = new Map<string, PokemonType>(); // Cache storage
+
   constructor(private http: HttpClient) {}
 
   getAllPokemons(limit: number, page: number): Observable<AllPokemonsType> {
@@ -33,10 +34,15 @@ export class PokemonDataService {
   }
 
   getPokemonData(name: string): Observable<PokemonType> {
-    const data = this.http
-      .get<CardType>(`${this.apiUrl}/pokemon/${name}`)
-      .pipe(map(transformToPokemonType));
-    return data;
+    if (this.cache.has(name)) {
+      return of(this.cache.get(name)!); 
+    }
+
+    return this.http.get<CardType>(`${this.apiUrl}/pokemon/${name}`).pipe(
+      map(transformToPokemonType),
+      tap((data) => this.cache.set(name, data)), 
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -51,5 +57,5 @@ export class PokemonDataService {
     console.error(`[PokemonDataService] ${errorMessage}`);
     return throwError(() => new Error(errorMessage));
   }
-  
 }
+
