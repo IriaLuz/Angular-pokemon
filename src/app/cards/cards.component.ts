@@ -9,18 +9,22 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  pokemonNames: PokemonType[] = [];
-  page = 1;
-  totalPokemons: number = 0;
+  pokemonNames: PokemonType[] = []; // Original list of Pokémon
+  filteredPokemons: PokemonType[] = []; // Filtered list based on search
+  page = 1; // Current page
+  totalPokemons: number = 0; // Total number of original Pokémon
+  totalFilteredPokemons: number = 0; // Total number of filtered Pokémon
   isLoading = false;
   notFoundMessage: string = '';
+  initialPage = 1;
 
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
-    this.getPokemons();
+    this.getPokemons(); // Get original Pokémon list on page load
   }
 
+  // Get all Pokémon for the original list with pagination
   getPokemons(): void {
     this.isLoading = true;
     this.pokemonService.getAllPokemons(12, this.page).subscribe(
@@ -42,24 +46,37 @@ export class CardsComponent implements OnInit {
     );
   }
 
+  // Handle search results coming from the SearchComponent
   onSearch(queryPokemons: PokemonType[]): void {
+    this.filteredPokemons = queryPokemons;
+    this.totalFilteredPokemons = queryPokemons.length;
+    this.page = 1; // Reset to first page when new search is performed
     if (queryPokemons.length === 0) {
       this.notFoundMessage = 'No Pokémon found matching your search.';
     } else {
       this.notFoundMessage = '';
     }
-    this.pokemonNames = queryPokemons;
-    this.page = 1;
-    this.totalPokemons = queryPokemons.length;
   }
 
+  // Reset to original Pokémon list and pagination
   resetToInitialPage(): void {
-    this.pokemonNames = [];
-    this.page = 1;
+    this.filteredPokemons = [];
+    this.page = this.initialPage;
     this.getPokemons();
     this.notFoundMessage = '';
   }
+
+  // Return the list to show based on whether search is active
+  get displayedPokemons(): PokemonType[] {
+    return this.filteredPokemons.length > 0 ? this.filteredPokemons : this.pokemonNames;
+  }
+
+  // Return the total count for pagination based on whether search is active
+  get totalItems(): number {
+    return this.filteredPokemons.length > 0 ? this.totalFilteredPokemons : this.totalPokemons;
+  }
 }
+
 
 
 
