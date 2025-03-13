@@ -26,16 +26,20 @@ describe('PokemonDataService', () => {
 
   it('should call the HTTP method for the given API', (done: DoneFn) => {
     service
-      .getPokemonData('bulbasaur') 
+      .getPokemonData('bulbasaur') // 1.
       .subscribe((pokemonData) => {
-        expect(pokemonData).toEqual(pokemonMockTransformed); 
-        done(); 
+        expect(pokemonData).toEqual(pokemonMockTransformed); // 5.
+        //what is this for?
+        done(); // 6.
       });
 
+    // Verify the matched URL get called in the GET API else it throws errors.'
     const req = httpMock.expectOne(
       'https://pokeapi.co/api/v2/pokemon/bulbasaur'
     ); // 2.
-    expect(req.request.method).toEqual('GET'); 
-    req.flush(pokemonMockResponse); 
+    // Verify that the request called is GET HTTP method only.
+    expect(req.request.method).toEqual('GET'); // 3.
+    //Ensures the correct data was returned using Subscribe callback.
+    req.flush(pokemonMockResponse); // 4.
   });
 });

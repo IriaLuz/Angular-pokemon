@@ -1,6 +1,6 @@
 <app-search (searchQuery)="onSearch($event)"></app-search> 
-<div class="page-wrapper">
 <button *ngIf="pokemonNames.length > 0" class="reset-button" (click)="resetToInitialPage()">Reset to Initial Page</button>
+<!-- Loader Component - Display while loading -->
 <app-loader *ngIf="isLoading"></app-loader>
 
 <div class="cards-container" *ngIf="pokemonNames.length > 0">
@@ -16,10 +16,13 @@
   <p>{{ notFoundMessage }}</p>
 </div>
 
+<!-- Button to Reset to Initial Page -->
+
+
 <pagination-controls
   [responsive]="true"
   (pageChange)="page = $event; getPokemons()"
 ></pagination-controls>
 
-</div>
+
 
