@@ -46,26 +46,17 @@ export class PokemonDataService {
     );
   }
 
-  getPokemonsByName(name: string): Observable<PokemonType[]> {
-    const params = new HttpParams().set('name', name); 
-    return this.http.get<AllPokemonsType>(`${this.apiUrl}/pokemon`, { params }).pipe(
-      switchMap(response => {
-       
-        const pokemonRequests = response.results
-          .filter((pokemon) =>
-            pokemon.name.toLowerCase().startsWith(name.toLowerCase())
-          )
-          .map(pokemon => this.http.get<CardType>(pokemon.url).pipe(
-            map(transformToPokemonType), 
-            catchError(this.handleError) 
-          ));
-          
-        
-        return forkJoin(pokemonRequests); 
-      }),
-      catchError(this.handleError) 
+  getPokemonsByName(names: string[]): Observable<PokemonType[]> {
+    const pokemonRequests = names.map((name) =>
+      this.http.get<CardType>(`${this.apiUrl}/pokemon/${name}`).pipe(
+        map(transformToPokemonType),
+        catchError(this.handleError)
+      )
     );
+
+    return forkJoin(pokemonRequests);
   }
+  
 
 
   private handleError(error: HttpErrorResponse) {
