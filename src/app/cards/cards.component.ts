@@ -9,36 +9,35 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  pokemonNames: PokemonType[] = []; // Store the full Pokémon data
-  page = 1; // Current page
-  totalPokemons: number = 0; // Total Pokémon count (for pagination)
-  isLoading = true; // Variable to track loading state
-  notFoundMessage: string = ''; // Message for "No Pokémon Found"
-  initialPage = 1; // Store the initial page to show when resetting
-
+  pokemonNames: PokemonType[] = []; 
+  page = 1; 
+  totalPokemons: number = 0; 
+  isLoading = true; 
+  notFoundMessage: string = ''; 
+  initialPage = 1; 
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
-    this.getPokemons(); // Initial load when no search query is provided
+    this.getPokemons(); 
   }
 
   getPokemons(): void {
-    this.isLoading = true; // Set loading state to true
+    this.isLoading = true; 
     this.pokemonService.getAllPokemons(12, this.page).subscribe(
       (response) => {
-        this.totalPokemons = response.count; // Total count of all Pokémon for pagination
+        this.totalPokemons = response.count; 
         const pokemons = response.results;
         const pokemonRequests = pokemons.map((pokemon) =>
           this.pokemonService.getPokemonData(pokemon.name)
         );
         forkJoin(pokemonRequests).subscribe((fullPokemonData: PokemonType[]) => {
           this.pokemonNames = fullPokemonData;
-          this.isLoading = false; // Set loading state to false after fetching data
+          this.isLoading = false; 
         });
       },
       (error) => {
         console.error("Error fetching data:", error);
-        this.isLoading = false; // Set loading state to false in case of error
+        this.isLoading = false; 
       }
     );
   }
@@ -54,11 +53,11 @@ export class CardsComponent implements OnInit {
     this.totalPokemons = queryPokemons.length;
   }
 
-  // Reset to the initial page after searching
+
   resetToInitialPage(): void {
     this.pokemonNames = [];
     this.page = this.initialPage;
-    this.getPokemons(); // Reload Pokémon data
+    this.getPokemons(); 
     this.notFoundMessage = '';
   }
 }
