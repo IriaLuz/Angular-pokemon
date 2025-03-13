@@ -17,13 +17,11 @@ export class SearchComponent {
     if (this.searchText.trim()) {
       this.pokemonService.getAllPokemons(100, 1).subscribe(
         (response) => {
-          
           const filteredNames = response.results
             .filter((pokemon) => pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase()))
             .map((pokemon) => pokemon.name);
 
           if (filteredNames.length > 0) {
-            
             this.pokemonService.getPokemonsByName(filteredNames).subscribe(
               (pokemons) => {
                 this.searchQuery.emit(pokemons);
@@ -46,7 +44,14 @@ export class SearchComponent {
       this.searchQuery.emit([]); 
     }
   }
+
+
+  clearSearch(): void {
+    this.searchText = '';
+    this.searchQuery.emit([]);  
+  }
 }
+
 
 
 

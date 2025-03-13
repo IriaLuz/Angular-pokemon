@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PokemonDataService } from './../services/pokemonData.service';
 import { PokemonType } from '../card/card';
 import { forkJoin } from 'rxjs';
+import { SearchComponent } from '../search/search.component';  
 
 @Component({
   selector: 'app-cards',
@@ -9,22 +10,23 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./cards.component.scss']
 })
 export class CardsComponent implements OnInit {
-  pokemonNames: PokemonType[] = []; // Original list of Pokémon
-  filteredPokemons: PokemonType[] = []; // Filtered list based on search
-  page = 1; // Current page
-  totalPokemons: number = 0; // Total number of original Pokémon
-  totalFilteredPokemons: number = 0; // Total number of filtered Pokémon
+  pokemonNames: PokemonType[] = []; 
+  filteredPokemons: PokemonType[] = []; 
+  page = 1; 
+  totalPokemons: number = 0; 
+  totalFilteredPokemons: number = 0; 
   isLoading = false;
   notFoundMessage: string = '';
   initialPage = 1;
 
+  @ViewChild(SearchComponent) searchComponent!: SearchComponent;  
+
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
-    this.getPokemons(); // Get original Pokémon list on page load
+    this.getPokemons(); 
   }
 
-  // Get all Pokémon for the original list with pagination
   getPokemons(): void {
     this.isLoading = true;
     this.pokemonService.getAllPokemons(12, this.page).subscribe(
@@ -46,11 +48,10 @@ export class CardsComponent implements OnInit {
     );
   }
 
-  // Handle search results coming from the SearchComponent
   onSearch(queryPokemons: PokemonType[]): void {
     this.filteredPokemons = queryPokemons;
     this.totalFilteredPokemons = queryPokemons.length;
-    this.page = 1; // Reset to first page when new search is performed
+    this.page = 1; 
     if (queryPokemons.length === 0) {
       this.notFoundMessage = 'No Pokémon found matching your search.';
     } else {
@@ -58,24 +59,26 @@ export class CardsComponent implements OnInit {
     }
   }
 
-  // Reset to original Pokémon list and pagination
   resetToInitialPage(): void {
     this.filteredPokemons = [];
     this.page = this.initialPage;
     this.getPokemons();
     this.notFoundMessage = '';
+
+    if (this.searchComponent) {
+      this.searchComponent.clearSearch();
+    }
   }
 
-  // Return the list to show based on whether search is active
   get displayedPokemons(): PokemonType[] {
     return this.filteredPokemons.length > 0 ? this.filteredPokemons : this.pokemonNames;
   }
 
-  // Return the total count for pagination based on whether search is active
   get totalItems(): number {
     return this.filteredPokemons.length > 0 ? this.totalFilteredPokemons : this.totalPokemons;
   }
 }
+
 
 
 
