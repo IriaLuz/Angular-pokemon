@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PokemonDataService } from './../services/pokemonData.service';
 import { PokemonType } from '../card/card';
 import { forkJoin } from 'rxjs';
+import { SearchComponent } from '../search/search.component';  
 
 @Component({
   selector: 'app-cards',
@@ -10,11 +11,18 @@ import { forkJoin } from 'rxjs';
 })
 export class CardsComponent implements OnInit {
   pokemonNames: PokemonType[] = []; 
-  page = 1; 
+  filteredPokemons: PokemonType[] = []; 
+  page = 1;
   totalPokemons: number = 0; 
-  isLoading = true; 
-  notFoundMessage: string = ''; 
-  initialPage = 1; 
+  totalFilteredPokemons: number = 0; 
+  isLoading = false;
+  notFoundMessage: string = '';
+  initialPage = 1;
+
+  private textLength = 0
+
+  @ViewChild(SearchComponent) searchComponent!: SearchComponent;  
+
   constructor(private pokemonService: PokemonDataService) {}
 
   ngOnInit(): void {
@@ -22,45 +30,71 @@ export class CardsComponent implements OnInit {
   }
 
   getPokemons(): void {
-    this.isLoading = true; 
+    this.isLoading = true;
     this.pokemonService.getAllPokemons(12, this.page).subscribe(
       (response) => {
-        this.totalPokemons = response.count; 
+        this.totalPokemons = response.count;
         const pokemons = response.results;
         const pokemonRequests = pokemons.map((pokemon) =>
           this.pokemonService.getPokemonData(pokemon.name)
         );
         forkJoin(pokemonRequests).subscribe((fullPokemonData: PokemonType[]) => {
           this.pokemonNames = fullPokemonData;
-          this.isLoading = false; 
+          this.isLoading = false;
         });
       },
       (error) => {
-        console.error("Error fetching data:", error);
-        this.isLoading = false; 
+        console.error('Error fetching data:', error);
+        this.isLoading = false;
       }
     );
   }
 
-  onSearch(queryPokemons: PokemonType[]): void {
-    if (queryPokemons.length === 0) {
+  onSearch(queryPokemons: PokemonType[] ): void {
+    this.filteredPokemons = queryPokemons;
+    this.totalFilteredPokemons = queryPokemons.length;
+    this.page = 1; 
+    
+    if (queryPokemons.length === 0 && this.textLength !== 0) {
       this.notFoundMessage = 'No Pokémon found matching your search.';
     } else {
-      this.notFoundMessage = '';
+      this.notFoundMessage = ''; 
     }
-    this.pokemonNames = queryPokemons;
-    this.page = 1;
-    this.totalPokemons = queryPokemons.length;
   }
 
+  onSearchLength(textLength: number) {
+    console.log(textLength)
+    this.textLength = textLength
+    if (textLength === 0){
+      this.notFoundMessage= ""; 
+    }
+  }
 
   resetToInitialPage(): void {
-    this.pokemonNames = [];
+    this.filteredPokemons = [];
     this.page = this.initialPage;
-    this.getPokemons(); 
-    this.notFoundMessage = '';
+    this.getPokemons();
+    this.notFoundMessage = ''; 
+
+    if (this.searchComponent) {
+      this.searchComponent.clearSearch();
+    }
+
+    this.notFoundMessage = '';  
+  }
+
+  get displayedPokemons(): PokemonType[] {
+    return this.filteredPokemons.length > 0 ? this.filteredPokemons : this.pokemonNames;
+  }
+
+  get totalItems(): number {
+    return this.filteredPokemons.length > 0 ? this.totalFilteredPokemons : this.totalPokemons;
   }
 }
+
+
+
+
 
 
 
