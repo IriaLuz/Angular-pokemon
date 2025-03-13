@@ -1,23 +1,29 @@
 <app-search (searchQuery)="onSearch($event)"></app-search>
-
 <div class="page-wrapper">
+   <!-- Reset Button -->
+   <button *ngIf="filteredPokemons.length > 0" class="reset-button" (click)="resetToInitialPage()">
+    Reset to Original List
+  </button>
+  <div *ngIf="notFoundMessage" class="no-pokemon-found">
+    <p>{{ notFoundMessage }}</p>
+  </div>
   <app-loader *ngIf="isLoading"></app-loader>
 
-  <div class="cards-container" *ngIf="pokemonNames.length > 0">
-    <div *ngFor="let pokemon of pokemonNames | paginate: { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }" class="fade-in">
+
+  <div class="cards-container" *ngIf="displayedPokemons.length > 0">
+    <div *ngFor="let pokemon of displayedPokemons | paginate: { itemsPerPage: 12, currentPage: page, totalItems: totalItems }" class="fade-in">
       <app-card [pokemonName]="pokemon.name"></app-card>
     </div>
   </div>
 
-  <div *ngIf="notFoundMessage" class="no-pokemon-found">
-    <p>{{ notFoundMessage }}</p>
-  </div>
+
 
   <pagination-controls
     [responsive]="true"
     (pageChange)="page = $event; getPokemons()">
   </pagination-controls>
 </div>
+
 
 
 
