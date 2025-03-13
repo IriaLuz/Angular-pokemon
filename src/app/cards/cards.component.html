@@ -1,18 +1,20 @@
-<app-loader *ngIf="isLoading"></app-loader>
+<app-search (searchQuery)="onSearch($event)"></app-search> <!-- Include Search Component -->
 
-<div
-  class="cards-container"
-  *ngFor="
-    let name of pokemonNames
-      | paginate
-        : { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }
-  "
->
-  <app-card [pokemonName]="name"></app-card>
+<div class="cards-container" *ngIf="pokemonNames.length > 0">
+  <div 
+    *ngFor="let pokemon of pokemonNames | paginate: { itemsPerPage: 12, currentPage: page, totalItems: totalPokemons }"
+  >
+    <app-card [pokemonName]="pokemon.name"></app-card>
+  </div>
+</div>
+
+<div *ngIf="notFoundMessage" class="no-pokemon-found">
+  <p>{{ notFoundMessage }}</p>
 </div>
 
 <pagination-controls
   [responsive]="true"
-  (pageChange)="page = $event; pokemonNames = []; getPokemons()"
+  (pageChange)="page = $event; getPokemons()"
 ></pagination-controls>
+
 
