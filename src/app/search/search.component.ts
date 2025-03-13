@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { PokemonDataService } from './../services/pokemonData.service';
 import { PokemonType } from '../card/card';
 
@@ -9,32 +7,48 @@ import { PokemonType } from '../card/card';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
-  @Output() searchQuery = new EventEmitter<PokemonType[]>(); // Emit PokemonType array to parent component
-
-  searchText: string = ''; // Store search input value
-  private searchSubject = new Subject<string>(); // Subject to handle search with debounce
+export class SearchComponent {
+  searchText: string = '';
+  @Output() searchQuery = new EventEmitter<PokemonType[]>();
 
   constructor(private pokemonService: PokemonDataService) {}
 
-  ngOnInit(): void {
-    // Handle search input with debounce
-    this.searchSubject.pipe(
-      // debounceTime(1000), // Wait for 5 seconds of inactivity
-      switchMap((query) => {
-        if (query) {
-          return this.pokemonService.getPokemonsByName(query); // Get Pokémon data by name
-        }
-        return []; // Return empty array if no query
-      })
-    ).subscribe((pokemons: PokemonType[]) => {
-      this.searchQuery.emit(pokemons); // Emit Pokémon results to the parent
-    });
-  }
-
   onSearch(): void {
-    this.searchSubject.next(this.searchText); // Trigger the search
+    if (this.searchText.trim()) {
+      this.pokemonService.getAllPokemons(100, 1).subscribe(
+        (response) => {
+          
+          const filteredNames = response.results
+            .filter((pokemon) => pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase()))
+            .map((pokemon) => pokemon.name);
+
+          if (filteredNames.length > 0) {
+            
+            this.pokemonService.getPokemonsByName(filteredNames).subscribe(
+              (pokemons) => {
+                this.searchQuery.emit(pokemons);
+              },
+              (error) => {
+                console.error('Error fetching Pokémon details:', error);
+                this.searchQuery.emit([]);
+              }
+            );
+          } else {
+            this.searchQuery.emit([]); 
+          }
+        },
+        (error) => {
+          console.error('Error fetching Pokémon names:', error);
+          this.searchQuery.emit([]);
+        }
+      );
+    } else {
+      this.searchQuery.emit([]); 
+    }
   }
 }
+
+
+
 
 
