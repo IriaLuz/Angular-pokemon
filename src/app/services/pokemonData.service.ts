@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { API_URL } from '../app-tokens'; // Import the token
 import { AllPokemonsType, CardType, PokemonType } from '../card/card';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Observable, throwError, of } from 'rxjs';
+import { Observable, throwError, of, forkJoin } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 export function transformToPokemonType(pokemonData: CardType): PokemonType {
   return {
@@ -44,6 +45,19 @@ export class PokemonDataService {
       catchError(this.handleError)
     );
   }
+
+  getPokemonsByName(names: string[]): Observable<PokemonType[]> {
+    const pokemonRequests = names.map((name) =>
+      this.http.get<CardType>(`${this.apiUrl}/pokemon/${name}`).pipe(
+        map(transformToPokemonType),
+        catchError(this.handleError)
+      )
+    );
+
+    return forkJoin(pokemonRequests);
+  }
+  
+
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred. Please try again.';

@@ -22,3 +22,29 @@ $pagination-button: #8d42f5;
 $pagination-button-hover: #d272d2;
 $pagination-button-disabled: #635f63;
 $pagination-button-text: white;
+
+.reset-button {
+    background-color: $card-button-background; /* Button background */
+    border: 2px solid $card-button-border; /* Border color */
+    color: $text; /* Text color */
+    font-size: 16px; /* Font size */
+    padding: 10px 20px; /* Padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  
+    &:hover {
+      background-color: $here-link; /* Change background on hover */
+      border-color: $card-border; /* Change border color on hover */
+      color: white; /* Change text color on hover */
+    }
+  
+    &:focus {
+      outline: none; /* Remove focus outline */
+    }
+  
+    &:active {
+      background-color: darken($here-link, 10%); /* Darken background on click */
+      border-color: darken($card-border, 10%); /* Darken border on click */
+    }
+  }
+  
