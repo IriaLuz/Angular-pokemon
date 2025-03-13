@@ -1,4 +1,4 @@
-<app-search (searchQuery)="onSearch($event)"></app-search>
+<app-search (searchQuery)="onSearch($event)" (searchTextLenght)="onSearchLength($event)"></app-search>
 <div class="page-wrapper">
    <!-- Reset Button -->
    <button *ngIf="filteredPokemons.length > 0" class="reset-button" (click)="resetToInitialPage()">

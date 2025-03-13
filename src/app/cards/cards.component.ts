@@ -19,6 +19,8 @@ export class CardsComponent implements OnInit {
   notFoundMessage: string = '';
   initialPage = 1;
 
+  private textLength = 0
+
   @ViewChild(SearchComponent) searchComponent!: SearchComponent;  
 
   constructor(private pokemonService: PokemonDataService) {}
@@ -48,15 +50,23 @@ export class CardsComponent implements OnInit {
     );
   }
 
-  onSearch(queryPokemons: PokemonType[]): void {
+  onSearch(queryPokemons: PokemonType[] ): void {
     this.filteredPokemons = queryPokemons;
     this.totalFilteredPokemons = queryPokemons.length;
     this.page = 1; 
     
-    if (queryPokemons.length === 0) {
+    if (queryPokemons.length === 0 && this.textLength !== 0) {
       this.notFoundMessage = 'No Pokémon found matching your search.';
     } else {
       this.notFoundMessage = ''; 
+    }
+  }
+
+  onSearchLength(textLength: number) {
+    console.log(textLength)
+    this.textLength = textLength
+    if (textLength === 0){
+      this.notFoundMessage= ""; 
     }
   }
 

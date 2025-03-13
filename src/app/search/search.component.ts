@@ -10,10 +10,14 @@ import { PokemonType } from '../card/card';
 export class SearchComponent {
   searchText: string = '';
   @Output() searchQuery = new EventEmitter<PokemonType[]>();
+  
+  @Output() searchTextLenght = new EventEmitter<number>();
+  
 
   constructor(private pokemonService: PokemonDataService) {}
 
   onSearch(): void {
+    this.searchTextLenght.emit(this.searchText.length)
     if (this.searchText.trim()) {
       this.pokemonService.getAllPokemons(100, 1).subscribe(
         (response) => {
