@@ -12,7 +12,7 @@ import { SearchComponent } from '../search/search.component';
 export class CardsComponent implements OnInit {
   pokemonNames: PokemonType[] = []; 
   filteredPokemons: PokemonType[] = []; 
-  page = 1; 
+  page = 1;
   totalPokemons: number = 0; 
   totalFilteredPokemons: number = 0; 
   isLoading = false;
@@ -52,10 +52,11 @@ export class CardsComponent implements OnInit {
     this.filteredPokemons = queryPokemons;
     this.totalFilteredPokemons = queryPokemons.length;
     this.page = 1; 
+    
     if (queryPokemons.length === 0) {
       this.notFoundMessage = 'No Pokémon found matching your search.';
     } else {
-      this.notFoundMessage = '';
+      this.notFoundMessage = ''; 
     }
   }
 
@@ -63,11 +64,13 @@ export class CardsComponent implements OnInit {
     this.filteredPokemons = [];
     this.page = this.initialPage;
     this.getPokemons();
-    this.notFoundMessage = '';
+    this.notFoundMessage = ''; 
 
     if (this.searchComponent) {
       this.searchComponent.clearSearch();
     }
+
+    this.notFoundMessage = '';  
   }
 
   get displayedPokemons(): PokemonType[] {
@@ -78,6 +81,7 @@ export class CardsComponent implements OnInit {
     return this.filteredPokemons.length > 0 ? this.totalFilteredPokemons : this.totalPokemons;
   }
 }
+
 
 
 
