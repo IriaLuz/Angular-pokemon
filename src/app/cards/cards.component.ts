@@ -12,8 +12,9 @@ export class CardsComponent implements OnInit {
   pokemonNames: PokemonType[] = []; // Store the full Pokémon data
   page = 1; // Current page
   totalPokemons: number = 0; // Total Pokémon count (for pagination)
-  isLoading = true;
+  isLoading = true; // Variable to track loading state
   notFoundMessage: string = ''; // Message for "No Pokémon Found"
+  initialPage = 1; // Store the initial page to show when resetting
 
   constructor(private pokemonService: PokemonDataService) {}
 
@@ -22,24 +23,22 @@ export class CardsComponent implements OnInit {
   }
 
   getPokemons(): void {
-    this.isLoading = true;
+    this.isLoading = true; // Set loading state to true
     this.pokemonService.getAllPokemons(12, this.page).subscribe(
       (response) => {
         this.totalPokemons = response.count; // Total count of all Pokémon for pagination
-        // Map through the results and fetch full Pokémon data
         const pokemons = response.results;
         const pokemonRequests = pokemons.map((pokemon) =>
           this.pokemonService.getPokemonData(pokemon.name)
         );
-        // Use forkJoin to wait for all the requests to finish
         forkJoin(pokemonRequests).subscribe((fullPokemonData: PokemonType[]) => {
-          this.pokemonNames = fullPokemonData; // Set the full Pokémon data
-          this.isLoading = false;
+          this.pokemonNames = fullPokemonData;
+          this.isLoading = false; // Set loading state to false after fetching data
         });
       },
       (error) => {
         console.error("Error fetching data:", error);
-        this.isLoading = false;
+        this.isLoading = false; // Set loading state to false in case of error
       }
     );
   }
@@ -50,11 +49,20 @@ export class CardsComponent implements OnInit {
     } else {
       this.notFoundMessage = '';
     }
-    this.pokemonNames = queryPokemons; // Update displayed Pokémon with search results
-    this.page = 1; // Reset to the first page when search is triggered
-    this.totalPokemons = queryPokemons.length; // Set total count to length of search results
+    this.pokemonNames = queryPokemons;
+    this.page = 1;
+    this.totalPokemons = queryPokemons.length;
+  }
+
+  // Reset to the initial page after searching
+  resetToInitialPage(): void {
+    this.pokemonNames = [];
+    this.page = this.initialPage;
+    this.getPokemons(); // Reload Pokémon data
+    this.notFoundMessage = '';
   }
 }
+
 
 
 

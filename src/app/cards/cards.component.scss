@@ -1,5 +1,34 @@
 @use "../../styles/spacing";
 
+// Cards container - Updated to center content vertically and horizontally
+.cards-container {
+  display: flex; /* Use flexbox for centering */
+  flex-wrap: wrap;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  padding: 16px;
+  margin-top: 20px;
+  min-height: 50vh; /* Ensure it takes at least half of the viewport height */
+}
+
+// Styling for each individual card within the container
+.cards-container .card {
+  margin: 10px;
+  opacity: 0; /* Initially hide the cards */
+  animation: fadeIn 0.5s ease-in-out forwards; /* Add fade-in effect */
+}
+
+// Fade-in animation for cards
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Message displayed when no Pokémon is found, centered
 .no-pokemon-found {
   text-align: center;
   font-size: 18px;
@@ -8,22 +37,18 @@
   margin-top: 20px;
 }
 
-.cards-container {
-  display: inline-flex;
-  flex-wrap: wrap;
-  padding: 16px;
-  justify-content: center;
-  margin-top: 20px;
+// Fade-in class for content that should appear gradually
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards; 
 }
 
-.cards-container .card {
-  margin: 10px;
-}
-
+// Pagination controls styling with centered alignment
 .pagination-controls {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
+
+
 
 
